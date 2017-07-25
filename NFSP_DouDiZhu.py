@@ -12,15 +12,15 @@ class RunAgent:
         self.Agent = agent
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 1000
-        self.SLMemory_num = 1000
+        self.RLMemory_num = 500
+        self.SLMemory_num = 100
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
         self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory)
         self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory)
         self.EPSILON = 0.06
         self.ETA = 0.1
-        self.EPISODE_NUM = 10000
+        self.EPISODE_NUM = 50000
 
 
 if __name__ == '__main__':
@@ -39,11 +39,16 @@ if __name__ == '__main__':
             if random.random() < runAgent1.ETA:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
                 if label:
-                    runAgent1.SLMemory.append([s, action_id])
+                    SL_in = np.zeros(runAgent1.ACTION_NUM)
+                    SL_in[action_id] = 1
+                    runAgent1.SLMemory.append([s, SL_in])
             else:
                 action_id = runAgent1.Pi.getAction(actions_ont_hot, s)
             # choose action_id
-            action_id = actions.index(action_id)
+            try:
+                action_id = actions.index(action_id)
+            except ValueError:
+                pass
             done = agent.step(player=1, action_id=action_id)
             if done:
                 break
@@ -55,11 +60,18 @@ if __name__ == '__main__':
             if random.random() < runAgent2.ETA:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
                 if label:
-                    runAgent2.SLMemory.append([s, action_id])
+                    SL_in = np.zeros(runAgent2.ACTION_NUM)
+                    SL_in[action_id] = 1
+                    runAgent2.SLMemory.append([s, SL_in])
             else:
                 action_id = runAgent2.Pi.getAction(actions_ont_hot, s)
             # choose action_id
-            action_id = actions.index(action_id)
+            if action_id == 0:
+                pass
+            try:
+                action_id = actions.index(action_id)
+            except ValueError:
+                pass
             done = agent.step(player=2, action_id=action_id)
             if done:
                 break
@@ -71,11 +83,17 @@ if __name__ == '__main__':
             if random.random() < runAgent3.ETA:
                 action_id, label = runAgent3.Q.getAction(actions_ont_hot, s)
                 if label:
-                    runAgent3.SLMemory.append([s, action_id])
+                    SL_in = np.zeros(runAgent3.ACTION_NUM)
+                    SL_in[action_id] = 1
+                    runAgent3.SLMemory.append([s, SL_in])
             else:
                 action_id = runAgent3.Pi.getAction(actions_ont_hot, s)
             # choose action_id
-            action_id = actions.index(action_id)
+            try:
+                action_id = actions.index(action_id)
+            except ValueError:
+                print(ValueError)
+                pass
             done = agent.step(player=3, action_id=action_id)
             if done:
                 break
@@ -100,19 +118,19 @@ if __name__ == '__main__':
             hot2[raw2] = 1
             runAgent1.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_])
 
-        if len(runAgent1.SLMemory) > 500:
-            runAgent1.Pi.trainPiNetwork()
-        if len(runAgent2.SLMemory) > 500:
-            runAgent2.Pi.trainPiNetwork()
-        if len(runAgent3.SLMemory) > 500:
-            runAgent3.Pi.trainPiNetwork()
+        if len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
+            runAgent1.Pi.trainPiNetwork('player1')
+        if len(runAgent2.SLMemory) == runAgent2.SLMemory_num:
+            runAgent2.Pi.trainPiNetwork('player2')
+        if len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
+            runAgent3.Pi.trainPiNetwork('player3')
 
-        if len(runAgent1.RLMemory) > 500:
-            runAgent1.Q.trainQNetwork()
-        if len(runAgent2.RLMemory) > 500:
-            runAgent2.Q.trainQNetwork()
-        if len(runAgent3.RLMemory) > 500:
-            runAgent3.Q.trainQNetwork()
+        if len(runAgent1.RLMemory) == runAgent1.RLMemory_num:
+            runAgent1.Q.trainQNetwork('player1')
+        if len(runAgent2.RLMemory) == runAgent2.RLMemory_num:
+            runAgent2.Q.trainQNetwork('player2')
+        if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
+            runAgent3.Q.trainQNetwork('player3')
 
 
 

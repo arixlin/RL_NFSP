@@ -48,17 +48,17 @@ class DQN_DouDiZhu:
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        # saver = tf.train.Saver()
-        # self.session = tf.InteractiveSession()
-        # self.session.run(tf.initialize_all_variables())
-        # checkpoint = tf.train.get_checkpoint_state("saved_DQNetworks")
-        # if checkpoint and checkpoint.model_checkpoint_path:
-        #     saver.restore(self.session, checkpoint.model_checkpoint_path)
-        #     print("Successfully loaded:", checkpoint.model_checkpoint_path)
-        # else:
-        #     print("Could not find old network weights")
+        self.saver = tf.train.Saver()
+        self.session = tf.InteractiveSession()
+        self.session.run(tf.initialize_all_variables())
+        checkpoint = tf.train.get_checkpoint_state("saved_DQNetworks")
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+            print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        else:
+            print("Could not find old network weights")
 
-    def trainQNetwork(self):
+    def trainQNetwork(self, player):
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.REPLAY_MEMORY, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -70,8 +70,8 @@ class DQN_DouDiZhu:
         y_batch = []
         QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
         for i in range(0, self.BATCH_SIZE):
-            terminal = minibatch[i][4]
-            if terminal:
+            terminal = minibatch[i][2]
+            if terminal != 0:
                 y_batch.append(reward_batch[i])
             else:
                 y_batch.append(reward_batch[i] + self.GAMMA * np.max(QValue_batch[i]))
@@ -81,10 +81,15 @@ class DQN_DouDiZhu:
             self.actionInput: action_batch,
             self.stateInput: state_batch
         })
+        print(player + '_' + 'RL_step:', self.timeStep, ' ', 'RL_loss:', self.cost.eval(feed_dict={
+            self.yInput: y_batch,
+            self.actionInput: action_batch,
+            self.stateInput: state_batch
+        }))
 
         # save network every 100000 iteration
-        # if self.timeStep % 100 == 0:
-        #     saver.save(self.session, 'saved_DQNetworks/' + 'network' + '-dqn', global_step=self.timeStep)
+        if self.timeStep % 100 == 0:
+            self.saver.save(self.session, 'saved_Networks/' + 'network' + '-dqn', global_step=self.timeStep)
 
         self.timeStep += 1
 
@@ -96,6 +101,18 @@ class DQN_DouDiZhu:
             while action_space[action_index] != 1:
                 action_index = random.randrange(self.ACTION_NUM)
         else:
-            action_index = np.argmax(QValue * action_space)
-            label = True
+            Q_test = QValue * action_space
+            if max(Q_test) <= 0.0000001:
+                action_index = random.randrange(self.ACTION_NUM)
+                while action_space[action_index] != 1:
+                    action_index = random.randrange(self.ACTION_NUM)
+                label = False
+            else:
+                action_index = np.argmax(QValue * action_space)
+                label = True
+            # if QValue[action_index] <= 0.0:
+            #     action_index = random.randrange(self.ACTION_NUM)
+            #     while action_space[action_index] != 1:
+            #         action_index = random.randrange(self.ACTION_NUM)
+            #     label = False
         return action_index, label

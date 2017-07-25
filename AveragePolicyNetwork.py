@@ -38,22 +38,22 @@ class Pi:
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
-        self.output = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer2, W3), b3))
-        self.cost = tf.reduce_mean(-tf.log(tf.multiply(self.output, self.actionOutput)))
+        self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
+        self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        saver = tf.train.Saver()
+        self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
         self.session.run(tf.initialize_all_variables())
         checkpoint = tf.train.get_checkpoint_state("saved_SLNetworks")
         if checkpoint and checkpoint.model_checkpoint_path:
-            saver.restore(self.session, checkpoint.model_checkpoint_path)
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             print("Successfully loaded:", checkpoint.model_checkpoint_path)
         else:
             print("Could not find old network weights")
 
-    def trainPiNetwork(self):
+    def trainPiNetwork(self, player):
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -63,14 +63,27 @@ class Pi:
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
+        print(player + '_' + 'SL_step:', self.timeStep, ' ', 'SL_loss:', self.cost.eval(feed_dict={
+            self.actionOutput: action_batch,
+            self.stateInput: state_batch
+        }))
 
         # save network every 100000 iteration
         if self.timeStep % 100 == 0:
-            saver.save(self.session, 'saved_SLNetworks/' + 'network' + '-SL', global_step=self.timeStep)
-
+            self.saver.save(self.session, 'saved_Networks/' + 'network' + '-SL', global_step=self.timeStep)
         self.timeStep += 1
 
     def getAction(self, action_space, state):
-        QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
-        action_index = np.argmax(QValue * action_space)
+        self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
+        Q_test = self.QValue * action_space
+        if max(Q_test) <= 0.0000001:
+            action_index = random.randrange(self.ACTION_NUM)
+            while action_space[action_index] != 1:
+                action_index = random.randrange(self.ACTION_NUM)
+        else:
+            action_index = np.argmax(self.QValue * action_space)
+        # if self.QValue[action_index] <= 0.0:
+        #     action_index = random.randrange(self.ACTION_NUM)
+        #     while action_space[action_index] != 1:
+        #         action_index = random.randrange(self.ACTION_NUM)
         return action_index
