@@ -46,7 +46,7 @@ class Pi:
         self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
         self.session.run(tf.initialize_all_variables())
-        checkpoint = tf.train.get_checkpoint_state("saved_SLNetworks")
+        checkpoint = tf.train.get_checkpoint_state("saved_PiNetworks")
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             print("Successfully loaded:", checkpoint.model_checkpoint_path)
@@ -70,7 +70,7 @@ class Pi:
 
         # save network every 100000 iteration
         if self.timeStep % 100 == 0:
-            self.saver.save(self.session, 'saved_Networks/' + 'network' + '-SL', global_step=self.timeStep)
+            self.saver.save(self.session, 'saved_PiNetworks/' + 'network' + '-SL', global_step=self.timeStep)
         self.timeStep += 1
 
     def getAction(self, action_space, state):

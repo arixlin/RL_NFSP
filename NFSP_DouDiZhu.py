@@ -1,7 +1,8 @@
+# -*- coding:utf-8 -*-
 import DQN_DouDiZhu as DQN
 from collections import deque
 import AveragePolicyNetwork as SLN
-import agent
+import agent as ag
 import numpy as np
 import random
 
@@ -24,7 +25,7 @@ class RunAgent:
 
 
 if __name__ == '__main__':
-    agent = agent.Agent(models=["rl", "rl", "rl"])
+    agent = ag.Agent(models=["rl", "rl", "rl"])
     runAgent1 = RunAgent(agent)
     runAgent2 = RunAgent(agent)
     runAgent3 = RunAgent(agent)
@@ -111,12 +112,12 @@ if __name__ == '__main__':
             raw2 = d2[j].a
             hot2 = np.zeros(runAgent2.ACTION_NUM)
             hot2[raw2] = 1
-            runAgent1.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_])
+            runAgent2.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_])
         for j in range(len(d3)):
             raw2 = d3[j].a
             hot2 = np.zeros(runAgent3.ACTION_NUM)
             hot2[raw2] = 1
-            runAgent1.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_])
+            runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_])
 
         if len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
             runAgent1.Pi.trainPiNetwork('player1')
@@ -131,6 +132,41 @@ if __name__ == '__main__':
             runAgent2.Q.trainQNetwork('player2')
         if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
             runAgent3.Q.trainQNetwork('player3')
+        print('=========== episode:', i, '============')
+        if i % 100 == 99:
+            agent_test = ag.Agent(models=["rl", "random", "random"])
+            runAgent1.Agent = agent_test
+            runAgent1.EPSILON = 0.0
+            count = 0
+            for kk in range(100):
+                agent_test.reset()
+                done = False
+                while not done:
+                    s, actions = agent_test.get_actions_space(player=1)
+                    actions_ont_hot = np.zeros(agent.dim_actions)
+                    for k in range(len(actions)):
+                        actions_ont_hot[actions[k]] = 1
+                    if random.random() < runAgent1.ETA:
+                        action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
+                    else:
+                        action_id = runAgent1.Pi.getAction(actions_ont_hot, s)
+                    # choose action_id
+                    try:
+                        action_id = actions.index(action_id)
+                    except ValueError:
+                        pass
+                    done = agent_test.step(player=1, action_id=action_id)
+                    winner = agent_test.game.playrecords.winner
+                    if winner == 1:
+                        count += 1
+                    if done:
+                        break
+            print('win_rate:', count, '%')
+            runAgent1.Agent = agent
+            runAgent1.EPSILON = 0.01
+
+
+
 
 
 

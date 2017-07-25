@@ -51,7 +51,7 @@ class DQN_DouDiZhu:
         self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
         self.session.run(tf.initialize_all_variables())
-        checkpoint = tf.train.get_checkpoint_state("saved_DQNetworks")
+        checkpoint = tf.train.get_checkpoint_state("saved_QNetwrks")
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             print("Successfully loaded:", checkpoint.model_checkpoint_path)
@@ -89,7 +89,7 @@ class DQN_DouDiZhu:
 
         # save network every 100000 iteration
         if self.timeStep % 100 == 0:
-            self.saver.save(self.session, 'saved_Networks/' + 'network' + '-dqn', global_step=self.timeStep)
+            self.saver.save(self.session, 'saved_QNetworks/' + 'network' + '-dqn', global_step=self.timeStep)
 
         self.timeStep += 1
 

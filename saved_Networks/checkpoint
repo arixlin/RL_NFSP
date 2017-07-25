@@ -1,6 +1,0 @@
-model_checkpoint_path: "network-SL-900"
-all_model_checkpoint_paths: "network-SL-500"
-all_model_checkpoint_paths: "network-SL-600"
-all_model_checkpoint_paths: "network-SL-700"
-all_model_checkpoint_paths: "network-SL-800"
-all_model_checkpoint_paths: "network-SL-900"
