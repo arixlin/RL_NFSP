@@ -13,12 +13,12 @@ class RunAgent:
         self.Agent = agent
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 1000
-        self.SLMemory_num = 1000
+        self.RLMemory_num = 100
+        self.SLMemory_num = 100
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
-        self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory)
-        self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory)
+        self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num)
+        self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory, self.SLMemory_num)
         self.EPSILON = 0.06
         self.ETA = 0.1
         self.EPISODE_NUM = 5000000
@@ -144,11 +144,11 @@ if __name__ == '__main__':
             runAgent2.Q.trainQNetwork('player2')
         if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
             runAgent3.Q.trainQNetwork('player3')
-        if i % 200 == 1:
+        if i % 500 == 1:
             print('=========== episode:', i, '============')
             out_file = runAgent1.Agent.game.get_record().records
             out = open('record' + str(i) + '.txt', 'w')
-            print(runAgent1.Agent.game.playrecords.show('=========='))
+            # print(runAgent1.Agent.game.playrecords.show('=========='), file=out)
             print(out_file, file=out)
             out.close()
             agent_test = ag.Agent(models=["rl", "random", "random"])

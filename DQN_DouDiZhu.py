@@ -5,13 +5,13 @@ import random
 
 class DQN_DouDiZhu:
     """DQN part of NFSP"""
-    def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY):
+    def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY, REPLAY_MEMORY_NUM):
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.EPSILON = 0.1
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = 32
+        self.BATCH_SIZE = REPLAY_MEMORY_NUM
         self.createQNetwork()
         self.timeStep = 0
 
@@ -43,7 +43,7 @@ class DQN_DouDiZhu:
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
-        Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=1)
+        Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
@@ -82,7 +82,7 @@ class DQN_DouDiZhu:
             self.actionInput: action_batch,
             self.stateInput: state_batch
         })
-        if self.timeStep % 200 == 1:
+        if self.timeStep % 500 == 1:
             print(player + '_' + 'RL_step:', self.timeStep, ' ', 'RL_loss:', self.cost.eval(feed_dict={
                 self.yInput: y_batch,
                 self.actionInput: action_batch,

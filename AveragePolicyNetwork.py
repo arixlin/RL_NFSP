@@ -4,11 +4,11 @@ import random
 
 class Pi:
     """class for average-policy network"""
-    def __init__(self, ACTION_NUM, STATE_NUM, SLMemory):
+    def __init__(self, ACTION_NUM, STATE_NUM, SLMemory, SLMemory_num):
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 32
+        self.BATCH_SIZE = SLMemory_num
         self.createQNetwork()
         self.timeStep = 0
 
@@ -63,7 +63,7 @@ class Pi:
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
-        if self.timeStep % 200 == 1:
+        if self.timeStep % 500 == 1:
             print(player + '_' + 'SL_step:', self.timeStep, ' ', 'SL_loss:', self.cost.eval(feed_dict={
                 self.actionOutput: action_batch,
                 self.stateInput: state_batch
