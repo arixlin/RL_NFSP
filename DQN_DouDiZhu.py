@@ -48,15 +48,15 @@ class DQN_DouDiZhu:
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        self.saver = tf.train.Saver()
+        # self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
+        # checkpoint = tf.train.get_checkpoint_state("saved_QNetworks/")
+        # if checkpoint and checkpoint.model_checkpoint_path:
+        #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+        #     print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        # else:
+        #     print("Could not find old network weights")
         self.session.run(tf.initialize_all_variables())
-        checkpoint = tf.train.get_checkpoint_state("saved_QNetwrks")
-        if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-            print("Successfully loaded:", checkpoint.model_checkpoint_path)
-        else:
-            print("Could not find old network weights")
 
     def trainQNetwork(self, player):
         # Step 1: obtain random minibatch from replay memory
@@ -65,6 +65,7 @@ class DQN_DouDiZhu:
         action_batch = [data[1] for data in minibatch]
         reward_batch = [data[2] for data in minibatch]
         nextState_batch = [data[3] for data in minibatch]
+        next_action_batch = [data[4] for data in minibatch]
 
         # Step 2: calculate y
         y_batch = []
@@ -74,22 +75,23 @@ class DQN_DouDiZhu:
             if terminal != 0:
                 y_batch.append(reward_batch[i])
             else:
-                y_batch.append(reward_batch[i] + self.GAMMA * np.max(QValue_batch[i]))
+                y_batch.append(reward_batch[i] + self.GAMMA * np.max(QValue_batch[i] * next_action_batch[i]))
 
         self.trainStep.run(feed_dict={
             self.yInput: y_batch,
             self.actionInput: action_batch,
             self.stateInput: state_batch
         })
-        print(player + '_' + 'RL_step:', self.timeStep, ' ', 'RL_loss:', self.cost.eval(feed_dict={
-            self.yInput: y_batch,
-            self.actionInput: action_batch,
-            self.stateInput: state_batch
-        }))
+        if self.timeStep % 200 == 1:
+            print(player + '_' + 'RL_step:', self.timeStep, ' ', 'RL_loss:', self.cost.eval(feed_dict={
+                self.yInput: y_batch,
+                self.actionInput: action_batch,
+                self.stateInput: state_batch
+            }))
 
         # save network every 100000 iteration
-        if self.timeStep % 100 == 0:
-            self.saver.save(self.session, 'saved_QNetworks/' + 'network' + '-dqn', global_step=self.timeStep)
+        # if self.timeStep % 100 == 0:
+        #     self.saver.save(self.session, 'saved_QNetworks/' + 'network' + '-dqn', global_step=self.timeStep)
 
         self.timeStep += 1
 

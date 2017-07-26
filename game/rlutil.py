@@ -62,7 +62,7 @@ def get_actions(next_moves, actions_lookuptable, game):
     #yaobuqi
     if len(actions) == 0:
         actions.append(430)
-    #buyao
+    # #buyao
     elif game.last_move != "start":
         actions.append(429)
         

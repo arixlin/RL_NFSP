@@ -8,17 +8,19 @@ from __future__ import print_function
 from __future__ import absolute_import
 from .gameutil import card_show, choose, game_init
 from .rlutil import get_state
+import jsonpickle
 
 
 ############################################
 #                 LR记录类                  #
 ############################################  
 class RLRecord(object):
-    def __init__(self, s=None, a=None, r=None,s_=None):
+    def __init__(self, s=None, a=None, r=None,s_=None,a_=None):
         self.s = s
         self.a = a
         self.r = r
         self.s_ = s_
+        self.a_ = a_
         
 ############################################
 #                 游戏类                   #
@@ -67,7 +69,7 @@ class Game(object):
     #返回扑克牌记录类
     def get_record(self):
         web_show = WebShow(self.playrecords)
-        #return jsonpickle.encode(web_show, unpicklable=False)
+        # return jsonpickle.encode(web_show, unpicklable=False)
         return web_show
     
     #返回下次出牌列表
@@ -82,12 +84,21 @@ class Game(object):
         #记录rl_record
         if self.playround > 1:
             if self.i == 0:
-                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=0, s_=get_state(self.playrecords, 1)))
+                if self.rlrecord1.a == 430 or self.rlrecord1.a == 429:
+                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-0.0, s_=get_state(self.playrecords, 1), a_=action[3]))
+                else:
+                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=0, s_=get_state(self.playrecords, 1), a_=action[3]))
             elif self.i == 1:
-                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=0, s_=get_state(self.playrecords, 2)))
+                if self.rlrecord2.a == 430 or self.rlrecord2.a == 429:
+                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-0.0, s_=get_state(self.playrecords, 2), a_=action[3]))
+                else:
+                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=0, s_=get_state(self.playrecords, 2), a_=action[3]))
             else:
-                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=0, s_=get_state(self.playrecords, 3)))   
-        
+                if self.rlrecord3.a == 430 or self.rlrecord3.a == 429:
+                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-0.0, s_=get_state(self.playrecords, 3), a_=action[3]))
+                else:
+                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=0, s_=get_state(self.playrecords, 3), a_=action[3]))
+
         if self.i == 0:
             self.rlrecord1 = rl_record
         elif self.i == 1:

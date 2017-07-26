@@ -43,15 +43,15 @@ class Pi:
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        self.saver = tf.train.Saver()
+        # self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
+        # checkpoint = tf.train.get_checkpoint_state("saved_PiNetworks/")
+        # if checkpoint and checkpoint.model_checkpoint_path:
+        #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+        #     print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        # else:
+        #     print("Could not find old network weights")
         self.session.run(tf.initialize_all_variables())
-        checkpoint = tf.train.get_checkpoint_state("saved_PiNetworks")
-        if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-            print("Successfully loaded:", checkpoint.model_checkpoint_path)
-        else:
-            print("Could not find old network weights")
 
     def trainPiNetwork(self, player):
         # Step 1: obtain random minibatch from replay memory
@@ -63,14 +63,15 @@ class Pi:
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
-        print(player + '_' + 'SL_step:', self.timeStep, ' ', 'SL_loss:', self.cost.eval(feed_dict={
-            self.actionOutput: action_batch,
-            self.stateInput: state_batch
-        }))
+        if self.timeStep % 200 == 1:
+            print(player + '_' + 'SL_step:', self.timeStep, ' ', 'SL_loss:', self.cost.eval(feed_dict={
+                self.actionOutput: action_batch,
+                self.stateInput: state_batch
+            }))
 
         # save network every 100000 iteration
-        if self.timeStep % 100 == 0:
-            self.saver.save(self.session, 'saved_PiNetworks/' + 'network' + '-SL', global_step=self.timeStep)
+        # if self.timeStep % 100 == 0:
+        #     self.saver.save(self.session, 'saved_PiNetworks/' + 'network' + '-SL', global_step=self.timeStep)
         self.timeStep += 1
 
     def getAction(self, action_space, state):

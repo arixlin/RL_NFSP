@@ -13,15 +13,15 @@ class RunAgent:
         self.Agent = agent
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 500
-        self.SLMemory_num = 100
+        self.RLMemory_num = 1000
+        self.SLMemory_num = 1000
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
         self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory)
         self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory)
         self.EPSILON = 0.06
         self.ETA = 0.1
-        self.EPISODE_NUM = 50000
+        self.EPISODE_NUM = 5000000
 
 
 if __name__ == '__main__':
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if random.random() < runAgent1.ETA:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
-                if label:
+                if label and action_id != 429 and action_id != 430:
                     SL_in = np.zeros(runAgent1.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent1.SLMemory.append([s, SL_in])
@@ -107,17 +107,29 @@ if __name__ == '__main__':
             raw2 = d1[j].a
             hot2 = np.zeros(runAgent1.ACTION_NUM)
             hot2[raw2] = 1
-            runAgent1.RLMemory.append([d1[j].s, hot2, d1[j].r, d1[j].s_])
+            raw3 = d1[j].a_
+            hot3 = np.zeros(runAgent1.ACTION_NUM)
+            hot3[raw3] = 1
+            if raw2 != 430:
+                runAgent1.RLMemory.append([d1[j].s, hot2, d1[j].r, d1[j].s_, hot3])
         for j in range(len(d2)):
             raw2 = d2[j].a
             hot2 = np.zeros(runAgent2.ACTION_NUM)
             hot2[raw2] = 1
-            runAgent2.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_])
+            raw3 = d2[j].a_
+            hot3 = np.zeros(runAgent2.ACTION_NUM)
+            hot3[raw3] = 1
+            if raw2 != 430:
+                runAgent2.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_, hot3])
         for j in range(len(d3)):
             raw2 = d3[j].a
             hot2 = np.zeros(runAgent3.ACTION_NUM)
             hot2[raw2] = 1
-            runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_])
+            raw3 = d3[j].a_
+            hot3 = np.zeros(runAgent3.ACTION_NUM)
+            hot3[raw3] = 1
+            if raw2 != 430:
+                runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_, hot3])
 
         if len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
             runAgent1.Pi.trainPiNetwork('player1')
@@ -132,8 +144,13 @@ if __name__ == '__main__':
             runAgent2.Q.trainQNetwork('player2')
         if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
             runAgent3.Q.trainQNetwork('player3')
-        print('=========== episode:', i, '============')
-        if i % 100 == 99:
+        if i % 200 == 1:
+            print('=========== episode:', i, '============')
+            out_file = runAgent1.Agent.game.get_record().records
+            out = open('record' + str(i) + '.txt', 'w')
+            print(runAgent1.Agent.game.playrecords.show('=========='))
+            print(out_file, file=out)
+            out.close()
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             runAgent1.EPSILON = 0.0
@@ -161,7 +178,7 @@ if __name__ == '__main__':
                         count += 1
                     if done:
                         break
-            print('win_rate:', count, '%')
+            print('****************************************** win_rate:', count, '% ********************')
             runAgent1.Agent = agent
             runAgent1.EPSILON = 0.01
 

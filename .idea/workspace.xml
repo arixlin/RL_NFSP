@@ -2,55 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logs/events.out.tfevents.1500529377.ADMIN-PC" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-500.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-500.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-500.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-600.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-600.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-600.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-700.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-700.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-700.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-800.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-800.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-800.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-900.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-900.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-SL-900.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-500.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-500.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-500.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-600.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-600.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-600.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-700.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-700.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-700.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-800.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-800.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-800.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-900.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-900.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_Networks/network-dqn-900.meta" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NFSP_DouDiZhu.iml" afterPath="$PROJECT_DIR$/.idea/NFSP_DouDiZhu.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AveragePolicyNetwork.py" afterPath="$PROJECT_DIR$/AveragePolicyNetwork.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DDPG.py" afterPath="$PROJECT_DIR$/DDPG.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DDPG_update.py" afterPath="$PROJECT_DIR$/DDPG_update.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/agent.py" afterPath="$PROJECT_DIR$/agent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/__init__.py" afterPath="$PROJECT_DIR$/game/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/actions.py" afterPath="$PROJECT_DIR$/game/actions.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/gameutil.py" afterPath="$PROJECT_DIR$/game/gameutil.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/myclass.py" afterPath="$PROJECT_DIR$/game/myclass.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/rlutil.py" afterPath="$PROJECT_DIR$/game/rlutil.py" />
     </list>
@@ -64,6 +22,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1500880487531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1500990679227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501034560271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileColors">
@@ -77,11 +36,10 @@
       <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="86" column="40" lean-forward="false" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+            <state relative-caret-position="-735">
+              <caret line="43" column="73" lean-forward="false" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
               </folding>
             </state>
           </provider>
@@ -90,8 +48,8 @@
       <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="150" column="24" lean-forward="false" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+            <state relative-caret-position="285">
+              <caret line="150" column="66" lean-forward="false" selection-start-line="150" selection-start-column="66" selection-end-line="150" selection-end-column="66" />
               <folding>
                 <element signature="e#23#49#0" expanded="true" />
               </folding>
@@ -102,8 +60,8 @@
       <file leaf-file-name="agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1534">
-              <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state relative-caret-position="1080">
+              <caret line="54" column="79" lean-forward="false" selection-start-line="54" selection-start-column="79" selection-end-line="54" selection-end-column="79" />
               <folding>
                 <element signature="e#85#122#0" expanded="true" />
               </folding>
@@ -111,12 +69,36 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="gameutil.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/gameutil.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1115">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#85#122#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rlutil.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game/rlutil.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1240">
+              <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="myclass.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/myclass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3276">
-              <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-              <folding />
+            <state relative-caret-position="401">
+              <caret line="87" column="132" lean-forward="false" selection-start-line="87" selection-start-column="132" selection-end-line="87" selection-end-column="132" />
+              <folding>
+                <element signature="e#85#122#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,11 +106,10 @@
       <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="72" column="95" lean-forward="false" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
+            <state relative-caret-position="820">
+              <caret line="41" column="121" lean-forward="false" selection-start-line="41" selection-start-column="121" selection-end-line="41" selection-end-column="121" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
               </folding>
             </state>
           </provider>
@@ -155,6 +136,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/agent.py" />
+        <option value="$PROJECT_DIR$/game/rlutil.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
         <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
@@ -169,8 +151,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+    <option name="x" value="64" />
+    <option name="y" value="-11" />
+    <option name="width" value="1857" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -188,22 +172,36 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NFSP_DouDiZhu" />
+              <option name="myItemId" value="RL_NFSP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NFSP_DouDiZhu" />
+              <option name="myItemId" value="RL_NFSP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RL_NFSP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RL_NFSP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -250,7 +248,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5" />
+      <option name="SDK_HOME" value="/usr/bin/python3.5" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -453,14 +451,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1440" extended-state="0" />
+    <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09928515" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10242587" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32865584" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34454638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -513,22 +511,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="58" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2418">
-          <caret line="96" column="49" lean-forward="false" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/agent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2184">
@@ -543,7 +530,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3276">
           <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -553,7 +542,6 @@
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -574,7 +562,6 @@
           <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -593,7 +580,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
           <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -603,7 +592,6 @@
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="45" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -624,7 +612,6 @@
           <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -643,7 +630,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3276">
           <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -653,7 +642,6 @@
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -674,7 +662,6 @@
           <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -693,7 +680,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
           <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -703,7 +692,6 @@
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -724,7 +712,6 @@
           <caret line="91" column="49" lean-forward="false" selection-start-line="91" selection-start-column="49" selection-end-line="91" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -753,7 +740,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
           <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -763,7 +752,6 @@
           <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -774,7 +762,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -803,7 +790,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -813,7 +802,6 @@
           <caret line="74" column="40" lean-forward="false" selection-start-line="74" selection-start-column="40" selection-end-line="74" selection-end-column="40" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -824,7 +812,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -853,7 +840,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -863,7 +852,6 @@
           <caret line="54" column="14" lean-forward="false" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
@@ -874,7 +862,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
@@ -903,7 +890,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -913,35 +902,47 @@
           <caret line="54" column="14" lean-forward="false" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/doudizhu-rl/agent.py" />
-    <entry file="file://$PROJECT_DIR$/game/gameutil.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1420">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/lib/python3.6/codecs.py" />
     <entry file="file:///usr/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/codecs.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/numpy/core/fromnumeric.py" />
-    <entry file="file://$PROJECT_DIR$/game/myclass.py">
+    <entry file="file://$PROJECT_DIR$/game/gameutil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3276">
-          <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="-1115">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1534">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="1080">
+          <caret line="54" column="79" lean-forward="false" selection-start-line="54" selection-start-column="79" selection-end-line="54" selection-end-column="79" />
+          <folding>
+            <element signature="e#85#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/rlutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1240">
+          <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/myclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="87" column="132" lean-forward="false" selection-start-line="87" selection-start-column="132" selection-end-line="87" selection-end-column="132" />
           <folding>
             <element signature="e#85#122#0" expanded="true" />
           </folding>
@@ -950,30 +951,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="72" column="95" lean-forward="false" selection-start-line="72" selection-start-column="95" selection-end-line="72" selection-end-column="95" />
+        <state relative-caret-position="820">
+          <caret line="41" column="121" lean-forward="false" selection-start-line="41" selection-start-column="121" selection-end-line="41" selection-end-column="121" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500990039000" expanded="true" signature="643:1349" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="86" column="40" lean-forward="false" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+        <state relative-caret-position="-735">
+          <caret line="43" column="73" lean-forward="false" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1500989598000" expanded="true" signature="734:1847" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="150" column="24" lean-forward="false" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+        <state relative-caret-position="285">
+          <caret line="150" column="66" lean-forward="false" selection-start-line="150" selection-start-column="66" selection-end-line="150" selection-end-column="66" />
           <folding>
             <element signature="e#23#49#0" expanded="true" />
           </folding>

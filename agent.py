@@ -42,7 +42,8 @@ class Agent(object):
         self.next_move_types, self.next_moves = self.game.get_next_moves()
         self.actions = get_actions(self.next_moves, self.actions_lookuptable, self.game)
         return s, self.actions
-        
+
+
     #传入actions的id
     def step(self, player, action_id=0):
         if player == 1:
