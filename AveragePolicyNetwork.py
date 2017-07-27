@@ -12,7 +12,7 @@ class Pi:
         self.SLMemory = SLMemory
         self.BATCH_SIZE = 128
         self.timeStep = 0
-        self.timeStep_num = 50
+        self.timeStep_num = 20
         self.createPiNetwork()
 
     def weight_variable(self, shape):
@@ -65,7 +65,7 @@ class Pi:
         # h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-3).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
@@ -87,7 +87,7 @@ class Pi:
 
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_PiNetworks_' + self.player + '/')
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('model loaded')
 
         self.trainStep.run(feed_dict={
@@ -106,7 +106,7 @@ class Pi:
     def getAction(self, action_space, state):
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_PiNetworks_' + self.player + '/')
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('model loaded')
         self.train_phase = False
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]

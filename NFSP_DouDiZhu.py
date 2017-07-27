@@ -32,20 +32,27 @@ if __name__ == '__main__':
     runAgent2 = RunAgent(agent, 'player2')
     runAgent3 = RunAgent(agent, 'player3')
     for i in range(runAgent1.EPISODE_NUM):
+        print('=========== episode:', i, '============')
         if random.random() < runAgent1.ETA:
             runAgent1.Q_enable = True
+            print('player1 ' + 'Q network is working')
         else:
             runAgent1.Q_enable = False
+            print('player1 ' + 'Pi network is working')
 
         if random.random() < runAgent2.ETA:
             runAgent2.Q_enable = True
+            print('player2 ' + 'Q network is working')
         else:
             runAgent2.Q_enable = False
+            print('player2 ' + 'Pi network is working')
 
         if random.random() < runAgent3.ETA:
             runAgent3.Q_enable = True
+            print('player3 ' + 'Q network is working')
         else:
             runAgent3.Q_enable = False
+            print('player3 ' + 'Pi network is working')
 
         agent.reset()
         done = False
@@ -57,7 +64,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent1.Q_enable:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 429 and action_id != 430:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent1.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent1.SLMemory.append([s, SL_in])
@@ -78,7 +85,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent2.Q_enable:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
-                if label:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent2.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent2.SLMemory.append([s, SL_in])
@@ -101,7 +108,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent3.Q_enable:
                 action_id, label = runAgent3.Q.getAction(actions_ont_hot, s)
-                if label:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent3.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent3.SLMemory.append([s, SL_in])
@@ -148,40 +155,39 @@ if __name__ == '__main__':
                 if len(runAgent1.RLMemory) == runAgent1.RLMemory_num:
                     for step in range(runAgent1.Q.Q_step_num):
                         runAgent1.Q.trainQNetwork()
-                        print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
+                    print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
                     runAgent1.Q.timeStep = 0
                 if len(runAgent2.RLMemory) == runAgent2.RLMemory_num:
                     for step in range(runAgent2.Q.Q_step_num):
                         runAgent2.Q.trainQNetwork()
-                        print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+                    print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
                     runAgent2.Q.timeStep = 0
                 if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
                     for step in range(runAgent3.Q.Q_step_num):
                         runAgent3.Q.trainQNetwork()
-                        print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+                    print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
                     runAgent3.Q.timeStep = 0
 
                 if len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
                     for step in range(runAgent1.Pi.timeStep_num):
                         runAgent1.Pi.trainPiNetwork()
-                        print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
+                    print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
                     runAgent1.Pi.timeStep = 0
                 if len(runAgent2.SLMemory) == runAgent2.SLMemory_num:
                     for step in range(runAgent2.Pi.timeStep_num):
                         runAgent2.Pi.trainPiNetwork()
-                        print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+                    print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
                     runAgent2.Pi.timeStep = 0
                 if len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
                     for step in range(runAgent3.Pi.timeStep_num):
                         runAgent3.Pi.trainPiNetwork()
-                        print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
+                    print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
                     runAgent3.Pi.timeStep = 0
             count += 1
 
             # 回合更新方法，返回为LR记录类对象列表
 
         if i % 50 == 1:
-            print('=========== episode:', i, '============')
             out_file = runAgent1.Agent.game.get_record().records
             out = open('record' + str(i) + '.txt', 'w')
             # print(runAgent1.Agent.game.playrecords.show('=========='), file=out)
