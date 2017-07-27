@@ -4,14 +4,15 @@ import random
 
 class Pi:
     """class for average-policy network"""
-    def __init__(self, ACTION_NUM, STATE_NUM, SLMemory, SLMemory_num):
+    def __init__(self, ACTION_NUM, STATE_NUM, SLMemory, SLMemory_num, player):
         self.train_phase = False
+        self.player = player
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
         self.BATCH_SIZE = 128
         self.timeStep = 0
-        self.timeStep_num = 20
+        self.timeStep_num = 50
         self.createPiNetwork()
 
     def weight_variable(self, shape):
@@ -64,25 +65,28 @@ class Pi:
         # h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        # self.saver = tf.train.Saver()
+        self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
-        # checkpoint = tf.train.get_checkpoint_state("saved_PiNetworks/")
-        # if checkpoint and checkpoint.model_checkpoint_path:
-        #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-        #     print("Successfully loaded:", checkpoint.model_checkpoint_path)
-        # else:
-        #     print("Could not find old network weights")
-        self.session.run(tf.initialize_all_variables())
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+            print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        else:
+            print("Could not find old network weights")
+            self.session.run(tf.initialize_all_variables())
 
-    def trainPiNetwork(self, player):
+    def trainPiNetwork(self):
         self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
         action_batch = [data[1] for data in minibatch]
+
+        self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
+        print('model loaded')
 
         self.trainStep.run(feed_dict={
             self.actionOutput: action_batch,
@@ -93,9 +97,8 @@ class Pi:
             self.stateInput: state_batch
         })
 
-        # save network every 100000 iteration
-        # if self.timeStep % 100 == 0:
-        #     self.saver.save(self.session, 'saved_PiNetworks/' + 'network' + '-SL', global_step=self.timeStep)
+        self.saver.save(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
+        print('model saved')
         self.timeStep += 1
 
     def getAction(self, action_space, state):

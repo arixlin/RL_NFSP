@@ -9,16 +9,17 @@ import random
 
 class RunAgent:
     """class for an agent"""
-    def __init__(self, agent):
+    def __init__(self, agent, player):
         self.Agent = agent
+        self.player = player
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
         self.RLMemory_num = 200
         self.SLMemory_num = 200
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
-        self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num)
-        self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory, self.SLMemory_num)
+        self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num, self.player)
+        self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory, self.SLMemory_num, self.player)
         self.EPSILON = 0.06
         self.ETA = 0.1
         self.EPISODE_NUM = 5000000
@@ -27,9 +28,9 @@ class RunAgent:
 
 if __name__ == '__main__':
     agent = ag.Agent(models=["rl", "rl", "rl"])
-    runAgent1 = RunAgent(agent)
-    runAgent2 = RunAgent(agent)
-    runAgent3 = RunAgent(agent)
+    runAgent1 = RunAgent(agent, 'player1')
+    runAgent2 = RunAgent(agent, 'player2')
+    runAgent3 = RunAgent(agent, 'player3')
     for i in range(runAgent1.EPISODE_NUM):
         if random.random() < runAgent1.ETA:
             runAgent1.Q_enable = True
@@ -179,7 +180,7 @@ if __name__ == '__main__':
 
             # 回合更新方法，返回为LR记录类对象列表
 
-        if i % 500 == 1:
+        if i % 50 == 1:
             print('=========== episode:', i, '============')
             out_file = runAgent1.Agent.game.get_record().records
             out = open('record' + str(i) + '.txt', 'w')

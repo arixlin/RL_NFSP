@@ -5,7 +5,7 @@ import random
 
 class DQN_DouDiZhu:
     """DQN part of NFSP"""
-    def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY, REPLAY_MEMORY_NUM):
+    def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY, REPLAY_MEMORY_NUM, player):
         self.train_phase = False
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
@@ -14,8 +14,9 @@ class DQN_DouDiZhu:
         self.REPLAY_MEMORY = REPLAY_MEMORY
         self.BATCH_SIZE = 128
         self.timeStep = 0
-        self.Q_step_num = 20
+        self.Q_step_num = 50
         self.createQNetwork()
+        self.player = player
 
     def weight_variable(self, shape):
         initial = tf.truncated_normal(shape, stddev=0.01)
@@ -69,20 +70,20 @@ class DQN_DouDiZhu:
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
-        self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
-        # self.saver = tf.train.Saver()
+        self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
-        # checkpoint = tf.train.get_checkpoint_state("saved_QNetworks/")
-        # if checkpoint and checkpoint.model_checkpoint_path:
-        #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-        #     print("Successfully loaded:", checkpoint.model_checkpoint_path)
-        # else:
-        #     print("Could not find old network weights")
-        self.session.run(tf.initialize_all_variables())
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+            print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        else:
+            print("Could not find old network weights")
+            self.session.run(tf.initialize_all_variables())
 
-    def trainQNetwork(self, player):
+    def trainQNetwork(self):
         self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.REPLAY_MEMORY, self.BATCH_SIZE)
@@ -93,7 +94,15 @@ class DQN_DouDiZhu:
         next_action_batch = [data[4] for data in minibatch]
 
         if self.timeStep == 0:
-            self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
+            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+            self.saver.save(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
+            print('old model replaced successfully!')
+
+        self.saver.restore(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
+        print('old model loaded')
+        self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
+        self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        print('new model loaded')
 
         # Step 2: calculate y
         y_batch = []
@@ -116,9 +125,8 @@ class DQN_DouDiZhu:
             })
 
         # save network every 100000 iteration
-        # if self.timeStep % 100 == 0:
-        #     self.saver.save(self.session, 'saved_QNetworks/' + 'network' + '-dqn', global_step=self.timeStep)
-
+        self.saver.save(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        print('new model saved')
         self.timeStep += 1
 
     def getAction(self, action_space, state):
