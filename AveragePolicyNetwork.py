@@ -5,12 +5,14 @@ import random
 class Pi:
     """class for average-policy network"""
     def __init__(self, ACTION_NUM, STATE_NUM, SLMemory, SLMemory_num):
+        self.train_phase = False
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = SLMemory_num
-        self.createQNetwork()
+        self.BATCH_SIZE = 128
         self.timeStep = 0
+        self.timeStep_num = 20
+        self.createPiNetwork()
 
     def weight_variable(self, shape):
         initial = tf.truncated_normal(shape, stddev=0.01)
@@ -20,7 +22,27 @@ class Pi:
         initial = tf.constant(0.01, shape=shape)
         return tf.Variable(initial)
 
-    def createQNetwork(self):
+    def batch_norm(self, X):
+        train_phase = self.train_phase
+        with tf.name_scope('bn'):
+            n_out = X.get_shape()[-1:]
+            beta = tf.Variable(tf.constant(0.0, shape=n_out), name='beta', trainable=True)
+            gamma = tf.Variable(tf.constant(1.0, shape=n_out), name='gamma', trainable=True)
+            # batch_mean, batch_var = tf.nn.moments(X, [0, 1, 2], name='moments')
+            batch_mean, batch_var = tf.nn.moments(X, [0, 1, 2], name='moments')
+            ema = tf.train.ExponentialMovingAverage(decay=0.5)
+
+            def mean_var_with_update():
+                ema_apply_op = ema.apply([batch_mean, batch_var])
+                with tf.control_dependencies([ema_apply_op]):
+                    return tf.identity(batch_mean), tf.identity(batch_var)
+
+            mean, var = tf.cond(train_phase, mean_var_with_update,
+                                lambda: (ema.average(batch_mean), ema.average(batch_var)))
+            normed = tf.nn.batch_normalization(X, mean, var, beta, gamma, 1e-3)
+        return normed
+
+    def createPiNetwork(self):
         # input layer
         self.stateInput = tf.placeholder(tf.float32, shape=[None, self.STATE_NUM])
         self.actionOutput = tf.placeholder(tf.float32, shape=[None, self.ACTION_NUM])
@@ -37,7 +59,9 @@ class Pi:
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
+        # h_layer1 = self.batch_norm(h_layer1)
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
+        # h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
         self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
@@ -54,6 +78,7 @@ class Pi:
         self.session.run(tf.initialize_all_variables())
 
     def trainPiNetwork(self, player):
+        self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -63,11 +88,10 @@ class Pi:
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
-        if self.timeStep % 500 == 1:
-            print(player + '_' + 'SL_step:', self.timeStep, ' ', 'SL_loss:', self.cost.eval(feed_dict={
-                self.actionOutput: action_batch,
-                self.stateInput: state_batch
-            }))
+        self.loss = self.cost.eval(feed_dict={
+            self.actionOutput: action_batch,
+            self.stateInput: state_batch
+        })
 
         # save network every 100000 iteration
         # if self.timeStep % 100 == 0:
@@ -75,6 +99,7 @@ class Pi:
         self.timeStep += 1
 
     def getAction(self, action_space, state):
+        self.train_phase = False
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
         Q_test = self.QValue * action_space
         if max(Q_test) <= 0.0000001:

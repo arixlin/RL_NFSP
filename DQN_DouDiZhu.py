@@ -6,18 +6,40 @@ import random
 class DQN_DouDiZhu:
     """DQN part of NFSP"""
     def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY, REPLAY_MEMORY_NUM):
+        self.train_phase = False
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.EPSILON = 0.1
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = REPLAY_MEMORY_NUM
-        self.createQNetwork()
+        self.BATCH_SIZE = 128
         self.timeStep = 0
+        self.Q_step_num = 20
+        self.createQNetwork()
 
     def weight_variable(self, shape):
         initial = tf.truncated_normal(shape, stddev=0.01)
         return tf.Variable(initial)
+
+    def batch_norm(self, X):
+        train_phase = self.train_phase
+        with tf.name_scope('bn'):
+            n_out = X.get_shape()[-1:]
+            beta = tf.Variable(tf.constant(0.0, shape=n_out), name='beta', trainable=True)
+            gamma = tf.Variable(tf.constant(1.0, shape=n_out), name='gamma', trainable=True)
+            # batch_mean, batch_var = tf.nn.moments(X, [0, 1, 2], name='moments')
+            batch_mean, batch_var = tf.nn.moments(X, [0, 1, 2], name='moments')
+            ema = tf.train.ExponentialMovingAverage(decay=0.5)
+
+            def mean_var_with_update():
+                ema_apply_op = ema.apply([batch_mean, batch_var])
+                with tf.control_dependencies([ema_apply_op]):
+                    return tf.identity(batch_mean), tf.identity(batch_var)
+
+            mean, var = tf.cond(train_phase, mean_var_with_update,
+                                lambda: (ema.average(batch_mean), ema.average(batch_var)))
+            normed = tf.nn.batch_normalization(X, mean, var, beta, gamma, 1e-3)
+        return normed
 
     def bias_variable(self, shape):
         initial = tf.constant(0.01, shape=shape)
@@ -41,7 +63,9 @@ class DQN_DouDiZhu:
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
+        # h_layer1 = self.batch_norm(h_layer1)
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
+        # h_layer2 = self.batch_norm(h_layer2)
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
@@ -59,6 +83,7 @@ class DQN_DouDiZhu:
         self.session.run(tf.initialize_all_variables())
 
     def trainQNetwork(self, player):
+        self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.REPLAY_MEMORY, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -67,27 +92,28 @@ class DQN_DouDiZhu:
         nextState_batch = [data[3] for data in minibatch]
         next_action_batch = [data[4] for data in minibatch]
 
+        if self.timeStep == 0:
+            self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
+
         # Step 2: calculate y
         y_batch = []
-        QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
         for i in range(0, self.BATCH_SIZE):
             terminal = minibatch[i][2]
             if terminal != 0:
                 y_batch.append(reward_batch[i])
             else:
-                y_batch.append(reward_batch[i] + self.GAMMA * np.max(QValue_batch[i] * next_action_batch[i]))
+                y_batch.append(reward_batch[i] + self.GAMMA * np.max(self.QValue_batch[i] * next_action_batch[i]))
 
         self.trainStep.run(feed_dict={
             self.yInput: y_batch,
             self.actionInput: action_batch,
             self.stateInput: state_batch
         })
-        if self.timeStep % 500 == 1:
-            print(player + '_' + 'RL_step:', self.timeStep, ' ', 'RL_loss:', self.cost.eval(feed_dict={
+        self.loss = self.cost.eval(feed_dict={
                 self.yInput: y_batch,
                 self.actionInput: action_batch,
                 self.stateInput: state_batch
-            }))
+            })
 
         # save network every 100000 iteration
         # if self.timeStep % 100 == 0:
@@ -96,6 +122,7 @@ class DQN_DouDiZhu:
         self.timeStep += 1
 
     def getAction(self, action_space, state):
+        self.train_phase = False
         QValue = self.QValue.eval(feed_dict={self.stateInput: [state]})[0]
         label = False
         if random.random() <= self.EPSILON:
