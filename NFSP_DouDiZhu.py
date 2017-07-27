@@ -147,35 +147,35 @@ if __name__ == '__main__':
                     runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_, hot3])
                 if len(runAgent1.RLMemory) == runAgent1.RLMemory_num:
                     for step in range(runAgent1.Q.Q_step_num):
-                        runAgent1.Q.trainQNetwork('player1')
+                        runAgent1.Q.trainQNetwork()
                         print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
                     runAgent1.Q.timeStep = 0
                 if len(runAgent2.RLMemory) == runAgent2.RLMemory_num:
                     for step in range(runAgent2.Q.Q_step_num):
-                        runAgent2.Q.trainQNetwork('player2')
+                        runAgent2.Q.trainQNetwork()
                         print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
                     runAgent2.Q.timeStep = 0
                 if len(runAgent3.RLMemory) == runAgent3.RLMemory_num:
                     for step in range(runAgent3.Q.Q_step_num):
-                        runAgent3.Q.trainQNetwork('player3')
+                        runAgent3.Q.trainQNetwork()
                         print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
                     runAgent3.Q.timeStep = 0
 
                 if len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
                     for step in range(runAgent1.Pi.timeStep_num):
-                        runAgent1.Pi.trainPiNetwork('player1')
+                        runAgent1.Pi.trainPiNetwork()
                         print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
                     runAgent1.Pi.timeStep = 0
                 if len(runAgent2.SLMemory) == runAgent2.SLMemory_num:
-                    for step in range(runAgent1.Pi.timeStep_num):
-                        runAgent1.Pi.trainPiNetwork('player1')
-                        print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
-                    runAgent1.Pi.timeStep = 0
+                    for step in range(runAgent2.Pi.timeStep_num):
+                        runAgent2.Pi.trainPiNetwork()
+                        print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+                    runAgent2.Pi.timeStep = 0
                 if len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
-                    for step in range(runAgent1.Pi.timeStep_num):
-                        runAgent1.Pi.trainPiNetwork('player1')
-                        print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
-                    runAgent1.Pi.timeStep = 0
+                    for step in range(runAgent3.Pi.timeStep_num):
+                        runAgent3.Pi.trainPiNetwork()
+                        print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
+                    runAgent3.Pi.timeStep = 0
             count += 1
 
             # 回合更新方法，返回为LR记录类对象列表

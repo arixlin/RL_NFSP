@@ -85,8 +85,10 @@ class Pi:
         state_batch = [data[0] for data in minibatch]
         action_batch = [data[1] for data in minibatch]
 
-        self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
-        print('model loaded')
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
+            print('model loaded')
 
         self.trainStep.run(feed_dict={
             self.actionOutput: action_batch,
@@ -102,6 +104,10 @@ class Pi:
         self.timeStep += 1
 
     def getAction(self, action_space, state):
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
+            print('model loaded')
         self.train_phase = False
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
         Q_test = self.QValue * action_space

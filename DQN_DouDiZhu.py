@@ -7,6 +7,7 @@ class DQN_DouDiZhu:
     """DQN part of NFSP"""
     def __init__(self, ACTION_NUM, STATE_NUM, REPLAY_MEMORY, REPLAY_MEMORY_NUM, player):
         self.train_phase = False
+        self.player = player
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.EPSILON = 0.1
@@ -16,7 +17,6 @@ class DQN_DouDiZhu:
         self.timeStep = 0
         self.Q_step_num = 50
         self.createQNetwork()
-        self.player = player
 
     def weight_variable(self, shape):
         initial = tf.truncated_normal(shape, stddev=0.01)
@@ -94,14 +94,18 @@ class DQN_DouDiZhu:
         next_action_batch = [data[4] for data in minibatch]
 
         if self.timeStep == 0:
-            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+            if checkpoint and checkpoint.model_checkpoint_path:
+                self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
             self.saver.save(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
             print('old model replaced successfully!')
 
         self.saver.restore(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
         print('old model loaded')
         self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
-        self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
         print('new model loaded')
 
         # Step 2: calculate y
@@ -130,6 +134,10 @@ class DQN_DouDiZhu:
         self.timeStep += 1
 
     def getAction(self, action_space, state):
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        print('new model loaded')
         self.train_phase = False
         QValue = self.QValue.eval(feed_dict={self.stateInput: [state]})[0]
         label = False

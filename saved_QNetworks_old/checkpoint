@@ -1,0 +1,3 @@
+model_checkpoint_path: "player3_model_old.ckpt"
+all_model_checkpoint_paths: "../saved_QNetworks_new/player3_model_new.ckpt"
+all_model_checkpoint_paths: "player3_model_old.ckpt"
