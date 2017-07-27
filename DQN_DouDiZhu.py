@@ -75,7 +75,7 @@ class DQN_DouDiZhu:
         # saving and loading networks
         self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
-        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             print("Successfully loaded:", checkpoint.model_checkpoint_path)
@@ -94,19 +94,19 @@ class DQN_DouDiZhu:
         next_action_batch = [data[4] for data in minibatch]
 
         if self.timeStep == 0:
-            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
             if checkpoint and checkpoint.model_checkpoint_path:
-                self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
-            self.saver.save(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
-            print('old model replaced successfully!')
+                self.saver.restore(self.session, 'saved_QNetworks_new_' + self.player + '/')
+            self.saver.save(self.session, 'saved_QNetworks_old_' + self.player + '/model_old.ckpt')
+            # print('old model replaced successfully!')
 
-        self.saver.restore(self.session, 'saved_QNetworks_old/' + self.player + '_model_old.ckpt')
-        print('old model loaded')
+        self.saver.restore(self.session, 'saved_QNetworks_old_' + self.player + '/')
+        # print('old model loaded')
         self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
-        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
-        print('new model loaded')
+            self.saver.restore(self.session, 'saved_QNetworks_new_' + self.player + '/')
+        # print('new model loaded')
 
         # Step 2: calculate y
         y_batch = []
@@ -129,15 +129,15 @@ class DQN_DouDiZhu:
             })
 
         # save network every 100000 iteration
-        self.saver.save(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
-        print('new model saved')
+        self.saver.save(self.session, 'saved_QNetworks_new_' + self.player + '/model_new.ckpt')
+        # print('new model saved')
         self.timeStep += 1
 
     def getAction(self, action_space, state):
-        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new/' + self.player + '_model_new.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_QNetworks_new/' + self.player + '_model_new.ckpt')
-        print('new model loaded')
+            self.saver.restore(self.session, 'saved_QNetworks_new_' + self.player + '/')
+        # print('new model loaded')
         self.train_phase = False
         QValue = self.QValue.eval(feed_dict={self.stateInput: [state]})[0]
         label = False

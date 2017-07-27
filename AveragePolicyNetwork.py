@@ -70,7 +70,7 @@ class Pi:
         # saving and loading networks
         self.saver = tf.train.Saver()
         self.session = tf.InteractiveSession()
-        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             print("Successfully loaded:", checkpoint.model_checkpoint_path)
@@ -85,10 +85,10 @@ class Pi:
         state_batch = [data[0] for data in minibatch]
         action_batch = [data[1] for data in minibatch]
 
-        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
-            print('model loaded')
+            self.saver.restore(self.session, 'saved_PiNetworks_' + self.player + '/')
+            # print('model loaded')
 
         self.trainStep.run(feed_dict={
             self.actionOutput: action_batch,
@@ -99,15 +99,15 @@ class Pi:
             self.stateInput: state_batch
         })
 
-        self.saver.save(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
-        print('model saved')
+        self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
+        # print('model saved')
         self.timeStep += 1
 
     def getAction(self, action_space, state):
-        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/' + self.player + '_model.ckpt')
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, 'saved_PiNetworks/' + self.player + '_model.ckpt')
-            print('model loaded')
+            self.saver.restore(self.session, 'saved_PiNetworks_' + self.player + '/')
+            # print('model loaded')
         self.train_phase = False
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
         Q_test = self.QValue * action_space
