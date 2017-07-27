@@ -70,7 +70,7 @@ class DQN_DouDiZhu:
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
-        self.trainStep = tf.train.GradientDescentOptimizer(1e-8).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()

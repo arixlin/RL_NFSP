@@ -65,7 +65,7 @@ class Pi:
         # h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.GradientDescentOptimizer(1e-3).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-2).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
