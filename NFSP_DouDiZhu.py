@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent1.Q_enable:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430:
+                if label and action_id != 430 and action_id != 429:
                     SL_in = np.zeros(runAgent1.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent1.SLMemory.append([s, SL_in])
@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent2.Q_enable:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430:
+                if label and action_id != 430 and action_id != 429:
                     SL_in = np.zeros(runAgent2.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent2.SLMemory.append([s, SL_in])
@@ -108,7 +108,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent3.Q_enable:
                 action_id, label = runAgent3.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430:
+                if label and action_id != 430 and action_id != 429:
                     SL_in = np.zeros(runAgent3.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent3.SLMemory.append([s, SL_in])
@@ -134,7 +134,7 @@ if __name__ == '__main__':
                 raw3 = d1[j].a_
                 hot3 = np.zeros(runAgent1.ACTION_NUM)
                 hot3[raw3] = 1
-                if raw2 != 430:
+                if raw2 != 430 and raw2 != 429:
                     runAgent1.RLMemory.append([d1[j].s, hot2, d1[j].r, d1[j].s_, hot3])
                 raw2 = d2[j].a
                 hot2 = np.zeros(runAgent2.ACTION_NUM)
@@ -142,7 +142,7 @@ if __name__ == '__main__':
                 raw3 = d2[j].a_
                 hot3 = np.zeros(runAgent2.ACTION_NUM)
                 hot3[raw3] = 1
-                if raw2 != 430:
+                if raw2 != 430 and raw2 != 429:
                     runAgent2.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_, hot3])
                 raw2 = d3[j].a
                 hot2 = np.zeros(runAgent3.ACTION_NUM)
@@ -150,7 +150,7 @@ if __name__ == '__main__':
                 raw3 = d3[j].a_
                 hot3 = np.zeros(runAgent3.ACTION_NUM)
                 hot3[raw3] = 1
-                if raw2 != 430:
+                if raw2 != 430 and raw2 != 429:
                     runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_, hot3])
                 if len(runAgent1.RLMemory) == runAgent1.RLMemory_num and len(runAgent1.SLMemory) == runAgent1.SLMemory_num and len(runAgent2.RLMemory) == runAgent2.RLMemory_num and len(runAgent2.SLMemory) == runAgent2.SLMemory_num and len(runAgent3.RLMemory) == runAgent3.RLMemory_num and len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
                     runAgent1.ETA = 0.1
