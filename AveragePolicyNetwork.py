@@ -10,9 +10,9 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 128
+        self.BATCH_SIZE = 5
         self.timeStep = 0
-        self.timeStep_num = 20
+        self.timeStep_num = 5
         self.createPiNetwork()
 
     def weight_variable(self, shape):
@@ -84,6 +84,8 @@ class Pi:
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
         action_batch = [data[1] for data in minibatch]
+        # print('=============')
+        # print(action_batch)
 
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
@@ -110,7 +112,11 @@ class Pi:
             # print('model loaded')
         self.train_phase = False
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
+        # print('Qvalue' + self.player)
+        # print(self.QValue)
         Q_test = self.QValue * action_space
+        # print('Qtest' + self.player)
+        # print(Q_test)
         if max(Q_test) <= 0.0000001:
             action_index = random.randrange(self.ACTION_NUM)
             while action_space[action_index] != 1:

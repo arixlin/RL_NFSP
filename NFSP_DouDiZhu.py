@@ -14,8 +14,8 @@ class RunAgent:
         self.player = player
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 200
-        self.SLMemory_num = 200
+        self.RLMemory_num = 20
+        self.SLMemory_num = 20
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
         self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num, self.player)
@@ -156,26 +156,26 @@ if __name__ == '__main__':
                     runAgent1.ETA = 0.1
                     runAgent2.ETA = 0.1
                     runAgent3.ETA = 0.1
-                    for step in range(runAgent1.Q.Q_step_num):
-                        runAgent1.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
-                    runAgent1.Q.timeStep = 0
+                    # for step in range(runAgent1.Q.Q_step_num):
+                    #     runAgent1.Q.trainQNetwork()
+                    # print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
+                    # runAgent1.Q.timeStep = 0
                     for step in range(runAgent1.Pi.timeStep_num):
                         runAgent1.Pi.trainPiNetwork()
                     print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
                     runAgent1.Pi.timeStep = 0
-                    for step in range(runAgent2.Q.Q_step_num):
-                        runAgent2.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
-                    runAgent2.Q.timeStep = 0
+                    # for step in range(runAgent2.Q.Q_step_num):
+                    #     runAgent2.Q.trainQNetwork()
+                    # print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+                    # runAgent2.Q.timeStep = 0
                     for step in range(runAgent2.Pi.timeStep_num):
                         runAgent2.Pi.trainPiNetwork()
                     print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
                     runAgent2.Pi.timeStep = 0
-                    for step in range(runAgent3.Q.Q_step_num):
-                        runAgent3.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
-                    runAgent3.Q.timeStep = 0
+                    # for step in range(runAgent3.Q.Q_step_num):
+                    #     runAgent3.Q.trainQNetwork()
+                    # print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+                    # runAgent3.Q.timeStep = 0
                     for step in range(runAgent3.Pi.timeStep_num):
                         runAgent3.Pi.trainPiNetwork()
                     print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
@@ -191,42 +191,41 @@ if __name__ == '__main__':
 
             # 回合更新方法，返回为LR记录类对象列表
 
-        if i % 50 == 1:
-            out_file = runAgent1.Agent.game.get_record().records
-            out = open('record' + str(i) + '.txt', 'w')
-            # print(runAgent1.Agent.game.playrecords.show('=========='), file=out)
-            print(out_file, file=out)
-            out.close()
-            agent_test = ag.Agent(models=["rl", "random", "random"])
-            runAgent1.Agent = agent_test
-            runAgent1.EPSILON = 0.0
-            count_test = 0
-            for kk in range(100):
-                agent_test.reset()
-                done = False
-                while not done:
-                    s, actions = agent_test.get_actions_space(player=1)
-                    actions_ont_hot = np.zeros(agent.dim_actions)
-                    for k in range(len(actions)):
-                        actions_ont_hot[actions[k]] = 1
-                    action_id = runAgent1.Pi.getAction(actions_ont_hot, s)
-                    # choose action_id
-                    try:
-                        action_id = actions.index(action_id)
-                    except ValueError:
-                        pass
-                    done = agent_test.step(player=1, action_id=action_id)
-                    winner = agent_test.game.playrecords.winner
-                    if winner == 1:
-                        count_test += 1
-                    if done:
-                        break
-            print('****************************************** win_rate:', count_test, '% ********************')
-            runAgent1.Agent = agent
-            runAgent1.EPSILON = 0.01
-
-
-
-
-
+        # if i % 50 == 1:
+        #     out_file = runAgent1.Agent.game.get_record().records
+        #     out = open('record' + str(i) + '.txt', 'w')
+        #     # print(runAgent1.Agent.game.playrecords.show('=========='), file=out)
+        #     print(out_file, file=out)
+        #     out.close()
+        #     agent_test = ag.Agent(models=["rl", "random", "random"])
+        #     runAgent1.Agent = agent_test
+        #     runAgent1.EPSILON = 0.0
+        #     count_test = 0
+        #     for kk in range(100):
+        #         agent_test.reset()
+        #         done = False
+        #         while not done:
+        #             s, actions = agent_test.get_actions_space(player=1)
+        #             actions_ont_hot = np.zeros(agent.dim_actions)
+        #             for k in range(len(actions)):
+        #                 actions_ont_hot[actions[k]] = 1
+        #             action_id = runAgent1.Pi.getAction(actions_ont_hot, s)
+        #             # choose action_id
+        #             try:
+        #                 action_id = actions.index(action_id)
+        #             except ValueError:
+        #                 pass
+        #             done = agent_test.step(player=1, action_id=action_id)
+        #             winner = agent_test.game.playrecords.winner
+        #             if winner == 1:
+        #                 count_test += 1
+        #             if done:
+        #                 break
+        #     print('****************************************** win_rate:', count_test, '% ********************')
+        #     runAgent1.Agent = agent
+        #     runAgent1.EPSILON = 0.01
+        #
+        #
+        #
+        #
 

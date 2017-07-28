@@ -13,9 +13,9 @@ class DQN_DouDiZhu:
         self.EPSILON = 0.1
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = 128
+        self.BATCH_SIZE = 5
         self.timeStep = 0
-        self.Q_step_num = 20
+        self.Q_step_num = 5
         self.createQNetwork()
 
     def weight_variable(self, shape):
@@ -68,6 +68,7 @@ class DQN_DouDiZhu:
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
         # h_layer2 = self.batch_norm(h_layer2)
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
+        self.QValue = tf.nn.softmax(self.QValue)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
         self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
