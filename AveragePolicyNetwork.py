@@ -10,7 +10,7 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 5
+        self.BATCH_SIZE = 64
         self.timeStep = 0
         self.timeStep_num = 5
         self.createPiNetwork()
@@ -83,7 +83,13 @@ class Pi:
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
+        # state_batch = np.zeros([5, 33])
         action_batch = [data[1] for data in minibatch]
+        # action_batch = np.zeros([5, 431])
+        # if self.player == 'player3':
+        #     state_batch = np.ones([5, 33])
+        #     action_batch = np.ones([5, 431])
+
         # print('=============')
         # print(action_batch)
 
@@ -111,6 +117,7 @@ class Pi:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('model loaded')
         self.train_phase = False
+        # state = np.zeros(33)
         self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
         # print('Qvalue' + self.player)
         # print(self.QValue)

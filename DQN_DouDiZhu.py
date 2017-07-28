@@ -13,7 +13,7 @@ class DQN_DouDiZhu:
         self.EPSILON = 0.1
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = 5
+        self.BATCH_SIZE = 64
         self.timeStep = 0
         self.Q_step_num = 5
         self.createQNetwork()
@@ -71,7 +71,7 @@ class DQN_DouDiZhu:
         self.QValue = tf.nn.softmax(self.QValue)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
-        self.trainStep = tf.train.GradientDescentOptimizer(1e-6).minimize(self.cost)
+        self.trainStep = tf.train.GradientDescentOptimizer(1e-4).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
