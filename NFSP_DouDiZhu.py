@@ -156,6 +156,9 @@ if __name__ == '__main__':
                     runAgent1.ETA = 0.1
                     runAgent2.ETA = 0.1
                     runAgent3.ETA = 0.1
+                    # ================================================================
+                    # ========================= bugs ====================================
+                    # ================================================================
                     for step in range(runAgent1.Q.Q_step_num):
                         runAgent1.Q.trainQNetwork()
                     print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
@@ -180,6 +183,9 @@ if __name__ == '__main__':
                         runAgent3.Pi.trainPiNetwork()
                     print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
                     runAgent3.Pi.timeStep = 0
+                    # ====================================================================
+                    # ============================= bugs ===================================
+                    # ====================================================================
                 else:
                     runAgent1.ETA = 0.5
                     runAgent2.ETA = 0.5
