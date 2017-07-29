@@ -50,6 +50,8 @@ if __name__ == '__main__':
                 if label and action_id != 430:
                     SL_in = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
                     SL_in[action_id] = 1.0
+                    if action_id == 429:
+                        print('alert!')
                     runAgent1.SLMemory.append([s, SL_in])
                     runAgent1.Pi.SLMemory = runAgent1.SLMemory
             else:
@@ -72,6 +74,8 @@ if __name__ == '__main__':
                 if label and action_id != 430:
                     SL_in = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                     SL_in[action_id] = 1.0
+                    if action_id == 429:
+                        print('alert!')
                     runAgent2.SLMemory.append([s, SL_in])
                     runAgent2.Pi.SLMemory = runAgent2.SLMemory
             else:
@@ -96,6 +100,8 @@ if __name__ == '__main__':
                 if label and action_id != 430:
                     SL_in = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                     SL_in[action_id] = 1.0
+                    if action_id == 429:
+                        print('alert!')
                     runAgent3.SLMemory.append([s, SL_in])
                     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:

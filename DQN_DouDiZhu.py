@@ -71,10 +71,8 @@ class DQN_DouDiZhu:
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
         # h_layer2 = self.batch_norm(h_layer2)
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
-        self.QValue = tf.nn.softmax(self.QValue)
-        Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
-        self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
-        self.trainStep = tf.train.GradientDescentOptimizer(1e-4).minimize(self.cost)
+        self.cost = tf.reduce_mean(tf.square(self.yInput - tf.reduce_sum(self.QValue * self.actionInput, axis=1)))
+        self.trainStep = tf.train.AdamOptimizer(1e-4).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
@@ -121,7 +119,7 @@ class DQN_DouDiZhu:
             if terminal != 0:
                 y_batch.append(reward_batch[i])
             else:
-                y_batch.append(reward_batch[i] + self.GAMMA * np.max(self.QValue_batch[i] * next_action_batch[i]))
+                y_batch.append(reward_batch[i] + self.GAMMA * np.max(self.QValue_batch[i]))
 
         self.session.run(self.trainStep, feed_dict={
             self.yInput: y_batch,
