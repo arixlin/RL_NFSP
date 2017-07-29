@@ -60,9 +60,6 @@ class Pi:
             self.session.run(tf.initialize_all_variables())
 
     def trainPiNetwork(self):
-        if self.timeStep != 0:
-            self.session = tf.Session()
-            print('open')
         # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
         # for var in Pi_var_list:
         #     print('pre ' + var.name)
@@ -98,8 +95,6 @@ class Pi:
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
-        self.session.close()
-        print('closed')
         # for var in Pi_var_list:
         #     print('after ' + var.name)
         #     print(self.session.run(var.name))
