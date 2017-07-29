@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/myclass.py" afterPath="$PROJECT_DIR$/game/myclass.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
+            <state relative-caret-position="844">
               <caret line="157" column="64" lean-forward="false" selection-start-line="157" selection-start-column="64" selection-end-line="157" selection-end-column="64" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -95,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myclass.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="myclass.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/myclass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-474">
-              <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
+            <state relative-caret-position="657">
+              <caret line="97" column="87" lean-forward="false" selection-start-line="97" selection-start-column="87" selection-end-line="97" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -139,7 +139,6 @@
       <list>
         <option value="$PROJECT_DIR$/agent.py" />
         <option value="$PROJECT_DIR$/game/rlutil.py" />
-        <option value="$PROJECT_DIR$/game/myclass.py" />
         <option value="$PROJECT_DIR$/game/RunAgent.py" />
         <option value="$PROJECT_DIR$/game/runAgent.py" />
         <option value="$PROJECT_DIR$/bug_test/test_main.py" />
@@ -147,6 +146,7 @@
         <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+        <option value="$PROJECT_DIR$/game/myclass.py" />
       </list>
     </option>
   </component>
@@ -823,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/myclass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-474">
-          <caret line="103" column="24" lean-forward="false" selection-start-line="103" selection-start-column="24" selection-end-line="103" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game/RunAgent.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -899,11 +891,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
+        <state relative-caret-position="844">
           <caret line="157" column="64" lean-forward="false" selection-start-line="157" selection-start-column="64" selection-end-line="157" selection-end-column="64" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game/myclass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="97" column="87" lean-forward="false" selection-start-line="97" selection-start-column="87" selection-end-line="97" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>
