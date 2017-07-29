@@ -80,7 +80,7 @@ class Pi:
         else:
             print("Could not find old network weights")
             self.session.run(tf.initialize_all_variables())
-        self.merged_summary_op = tf.merge_all_summaries()
+        self.merged_summary_op = tf.summary.merge_all()
         self.summary_writer = tf.train.SummaryWriter('logs', self.session.graph)
 
 
