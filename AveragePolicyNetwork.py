@@ -14,6 +14,7 @@ class Pi:
         self.timeStep = 0
         self.timeStep_num = 10
         self.createPiNetwork()
+        self.total_step = 0
 
     def weight_variable(self, shape, name):
         initial = tf.truncated_normal(shape, stddev=0.01)
@@ -66,6 +67,7 @@ class Pi:
         # h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
+        tf.summary.scalar('SL_loss', self.cost)
         self.trainStep = tf.train.GradientDescentOptimizer(1e-2).minimize(self.cost)
 
         # saving and loading networks
@@ -78,6 +80,9 @@ class Pi:
         else:
             print("Could not find old network weights")
             self.session.run(tf.initialize_all_variables())
+        self.merged_summary_op = tf.merge_all_summaries()
+        self.summary_writer = tf.train.SummaryWriter('logs', self.session.graph)
+
 
     def trainPiNetwork(self):
         # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
@@ -114,7 +119,11 @@ class Pi:
 
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
+        if self.total_step % 100 == 0:
+            summary_str = self.session.run(self.merged_summary_op)
+            self.summary_writer.add_summary(summary_str, self.total_step)
         self.timeStep += 1
+        self.total_step += 1
         # for var in Pi_var_list:
         #     print('after ' + var.name)
         #     print(self.session.run(var.name))
