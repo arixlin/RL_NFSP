@@ -151,7 +151,7 @@ class DQN_DouDiZhu:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
         # print('new model loaded')
         self.train_phase = False
-        QValue = self.session.run(self.Qvalue, feed_dict={self.stateInput: [state]})[0]
+        QValue = self.session.run(self.QValue, feed_dict={self.stateInput: [state]})[0]
         label = False
         if random.random() <= self.EPSILON:
             action_index = random.randrange(self.ACTION_NUM)
