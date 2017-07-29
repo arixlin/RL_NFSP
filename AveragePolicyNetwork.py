@@ -15,13 +15,13 @@ class Pi:
         self.timeStep_num = 5
         self.createPiNetwork()
 
-    def weight_variable(self, shape):
+    def weight_variable(self, shape, name):
         initial = tf.truncated_normal(shape, stddev=0.01)
-        return tf.Variable(initial)
+        return tf.get_variable(name=name, initializer=initial)
 
-    def bias_variable(self, shape):
+    def bias_variable(self, shape, name):
         initial = tf.constant(0.01, shape=shape)
-        return tf.Variable(initial)
+        return tf.get_variable(name=name, initializer=initial)
 
     def batch_norm(self, X):
         train_phase = self.train_phase
@@ -49,14 +49,15 @@ class Pi:
         self.actionOutput = tf.placeholder(tf.float32, shape=[None, self.ACTION_NUM])
 
         # weights
-        W1 = self.weight_variable([self.STATE_NUM, 256])
-        b1 = self.bias_variable([256])
+        with tf.name_scope('Pi') as scope:
+            W1 = self.weight_variable([self.STATE_NUM, 256], scope + 'W1')
+            b1 = self.bias_variable([256], scope + 'b1')
 
-        W2 = self.weight_variable([256, 512])
-        b2 = self.bias_variable([512])
+            W2 = self.weight_variable([256, 512], scope + 'W2')
+            b2 = self.bias_variable([512], scope + 'b2')
 
-        W3 = self.weight_variable([512, self.ACTION_NUM])
-        b3 = self.bias_variable([self.ACTION_NUM])
+            W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
+            b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
@@ -79,6 +80,10 @@ class Pi:
             self.session.run(tf.initialize_all_variables())
 
     def trainPiNetwork(self):
+        Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
+        for var in Pi_var_list:
+            print('pre ' + var.name)
+            print(self.session.run(var.name))
         self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
@@ -110,6 +115,10 @@ class Pi:
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
+        for var in Pi_var_list:
+            print('after ' + var.name)
+            print(self.session.run(var.name))
+        self.train_phase = True
 
     def getAction(self, action_space, state):
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')

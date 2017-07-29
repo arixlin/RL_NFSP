@@ -18,9 +18,13 @@ class DQN_DouDiZhu:
         self.Q_step_num = 5
         self.createQNetwork()
 
-    def weight_variable(self, shape):
+    def weight_variable(self, shape, name):
         initial = tf.truncated_normal(shape, stddev=0.01)
-        return tf.Variable(initial)
+        return tf.get_variable(name=name, initializer=initial)
+
+    def bias_variable(self, shape, name):
+        initial = tf.constant(0.01, shape=shape)
+        return tf.get_variable(name=name, initializer=initial)
 
     def batch_norm(self, X):
         train_phase = self.train_phase
@@ -42,9 +46,6 @@ class DQN_DouDiZhu:
             normed = tf.nn.batch_normalization(X, mean, var, beta, gamma, 1e-3)
         return normed
 
-    def bias_variable(self, shape):
-        initial = tf.constant(0.01, shape=shape)
-        return tf.Variable(initial)
 
     def createQNetwork(self):
         # input layer
@@ -53,14 +54,15 @@ class DQN_DouDiZhu:
         self.yInput = tf.placeholder(dtype=tf.float32, shape=[None])
 
         # weights
-        W1 = self.weight_variable([self.STATE_NUM, 256])
-        b1 = self.bias_variable([256])
+        with tf.name_scope('Q') as scope:
+            W1 = self.weight_variable([self.STATE_NUM, 256], scope + 'W1')
+            b1 = self.bias_variable([256], scope + 'b1')
 
-        W2 = self.weight_variable([256, 512])
-        b2 = self.bias_variable([512])
+            W2 = self.weight_variable([256, 512], scope + 'W2')
+            b2 = self.bias_variable([512], scope + 'b2')
 
-        W3 = self.weight_variable([512, self.ACTION_NUM])
-        b3 = self.bias_variable([self.ACTION_NUM])
+            W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
+            b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))

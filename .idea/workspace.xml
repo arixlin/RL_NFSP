@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AveragePolicyNetwork.py" afterPath="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +16,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1500880487531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501152229617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501297197675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501301835395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$DQN_DouDiZhu.coverage" NAME="DQN_DouDiZhu Coverage Results" MODIFIED="1501146479154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RL_NFSP$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1501241835440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -30,8 +31,8 @@
       <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1288">
-              <caret line="73" column="62" lean-forward="false" selection-start-line="73" selection-start-column="62" selection-end-line="73" selection-end-column="62" />
+            <state relative-caret-position="-1286">
+              <caret line="64" column="64" lean-forward="false" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -39,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1055">
-              <caret line="188" column="45" lean-forward="false" selection-start-line="185" selection-start-column="20" selection-end-line="188" selection-end-column="45" />
+            <state relative-caret-position="-314">
+              <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
               <folding>
                 <element signature="e#23#49#0" expanded="true" />
               </folding>
@@ -95,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+            <state relative-caret-position="656">
+              <caret line="118" column="24" lean-forward="false" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -130,9 +131,9 @@
         <option value="$PROJECT_DIR$/agent.py" />
         <option value="$PROJECT_DIR$/game/rlutil.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
+        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
-        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
       </list>
     </option>
   </component>
@@ -828,10 +829,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-314">
+          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding>
+            <element signature="e#23#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1288">
-          <caret line="73" column="62" lean-forward="false" selection-start-line="73" selection-start-column="62" selection-end-line="73" selection-end-column="62" />
+        <state relative-caret-position="-1286">
+          <caret line="64" column="64" lean-forward="false" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -840,20 +851,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
+        <state relative-caret-position="656">
+          <caret line="118" column="24" lean-forward="false" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1055">
-          <caret line="188" column="45" lean-forward="false" selection-start-line="185" selection-start-column="20" selection-end-line="188" selection-end-column="45" />
-          <folding>
-            <element signature="e#23#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
