@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/RunAgent.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bug_test/test_main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.meta" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AveragePolicyNetwork.py" afterPath="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +27,8 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1500880487531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501152229617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501306201120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$test_main.coverage" NAME="test_main Coverage Results" MODIFIED="1501310519494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bug_test" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501311663535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$DQN_DouDiZhu.coverage" NAME="DQN_DouDiZhu Coverage Results" MODIFIED="1501146479154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RL_NFSP$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1501241835440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -30,8 +43,8 @@
       <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="26" column="76" lean-forward="false" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
+            <state relative-caret-position="286">
+              <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -42,8 +55,20 @@
       <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="3926">
+              <caret line="151" column="52" lean-forward="false" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+              <folding>
+                <element signature="e#23#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RunAgent.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RunAgent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,8 +121,32 @@
       <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3120">
-              <caret line="120" column="33" lean-forward="false" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
+            <state relative-caret-position="1534">
+              <caret line="59" column="7" lean-forward="false" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bug_test/test_main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="870">
+              <caret line="84" column="28" lean-forward="false" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -128,10 +177,12 @@
         <option value="$PROJECT_DIR$/agent.py" />
         <option value="$PROJECT_DIR$/game/rlutil.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
-        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
-        <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/game/RunAgent.py" />
         <option value="$PROJECT_DIR$/game/runAgent.py" />
+        <option value="$PROJECT_DIR$/bug_test/test_main.py" />
+        <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
+        <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
       </list>
     </option>
@@ -148,7 +199,9 @@
     <option name="width" value="2560" />
     <option name="height" value="1413" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -172,6 +225,11 @@
             <path>
               <item name="RL_NFSP" type="b2602c69:ProjectViewProjectNode" />
               <item name="RL_NFSP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RL_NFSP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RL_NFSP" type="462c0819:PsiDirectoryNode" />
+              <item name="bug_test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RL_NFSP" type="b2602c69:ProjectViewProjectNode" />
@@ -341,16 +399,36 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <list size="3">
+    <configuration name="test_main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bug_test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="NFSP_DouDiZhu" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bug_test/test_main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.AveragePolicyNetwork" />
       <item index="1" class="java.lang.String" itemvalue="Python.DQN_DouDiZhu" />
       <item index="2" class="java.lang.String" itemvalue="Python.NFSP_DouDiZhu" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_main" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.NFSP_DouDiZhu" />
-        <item index="1" class="java.lang.String" itemvalue="Python.AveragePolicyNetwork" />
-        <item index="2" class="java.lang.String" itemvalue="Python.DQN_DouDiZhu" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test_main" />
+        <item index="2" class="java.lang.String" itemvalue="Python.AveragePolicyNetwork" />
+        <item index="3" class="java.lang.String" itemvalue="Python.DQN_DouDiZhu" />
       </list>
     </recent_temporary>
   </component>
@@ -375,7 +453,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.401112" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.401112" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -440,7 +518,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="110" />
+      <option name="time" value="111" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -449,32 +527,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/game/myclass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="129" column="11" lean-forward="false" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="72" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2288">
@@ -517,7 +569,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2782">
           <caret line="112" column="24" lean-forward="true" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -563,7 +617,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -581,7 +637,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -627,7 +685,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="962">
           <caret line="37" column="24" lean-forward="false" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -673,7 +733,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2300">
           <caret line="120" column="20" lean-forward="false" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,7 +781,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2300">
           <caret line="120" column="20" lean-forward="false" selection-start-line="120" selection-start-column="20" selection-end-line="120" selection-end-column="20" />
-          <folding />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -799,23 +863,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
+    <entry file="file://$PROJECT_DIR$/game/RunAgent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3120">
-          <caret line="120" column="33" lean-forward="false" selection-start-line="120" selection-start-column="33" selection-end-line="120" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="26" column="76" lean-forward="false" selection-start-line="26" selection-start-column="76" selection-end-line="26" selection-end-column="76" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="546">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -829,19 +881,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game/RunAgent.py">
+    <entry file="file://$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        <state relative-caret-position="870">
+          <caret line="84" column="28" lean-forward="false" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bug_test/test_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1534">
+          <caret line="59" column="7" lean-forward="false" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunAgent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="3926">
+          <caret line="151" column="52" lean-forward="false" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+          <folding>
+            <element signature="e#23#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -70,7 +70,7 @@ class Pi:
 
         # saving and loading networks
         self.saver = tf.train.Saver()
-        self.session = tf.InteractiveSession()
+        self.session = tf.Session()
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
@@ -78,8 +78,12 @@ class Pi:
         else:
             print("Could not find old network weights")
             self.session.run(tf.initialize_all_variables())
+            self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
+        self.session.close()
 
     def trainPiNetwork(self):
+        if self.trainStep == 0:
+            self.session = tf.Session()
         # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
         # for var in Pi_var_list:
         #     print('pre ' + var.name)
@@ -103,11 +107,11 @@ class Pi:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('model loaded')
 
-        self.trainStep.run(feed_dict={
+        self.session.run(self.trainStep, feed_dict={
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
-        self.loss = self.cost.eval(feed_dict={
+        self.loss = self.session.run(self.cost, feed_dict={
             self.actionOutput: action_batch,
             self.stateInput: state_batch
         })
@@ -115,19 +119,22 @@ class Pi:
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
+        if self.trainStep == self.timeStep_num - 1:
+            self.session.close()
         # for var in Pi_var_list:
         #     print('after ' + var.name)
         #     print(self.session.run(var.name))
         # self.train_phase = True
 
     def getAction(self, action_space, state):
+        self.session = tf.Session()
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('model loaded')
         self.train_phase = False
         # state = np.zeros(33)
-        self.QValue = self.output.eval(feed_dict={self.stateInput: [state]})[0]
+        self.QValue = self.session.run(self.output, feed_dict={self.stateInput: [state]})[0]
         # print('Qvalue' + self.player)
         # print(self.QValue)
         Q_test = self.QValue * action_space
@@ -143,4 +150,5 @@ class Pi:
         #     action_index = random.randrange(self.ACTION_NUM)
         #     while action_space[action_index] != 1:
         #         action_index = random.randrange(self.ACTION_NUM)
+        self.session.close()
         return action_index
