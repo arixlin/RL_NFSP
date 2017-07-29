@@ -1,0 +1,9 @@
+mkdir saved_QNetworks_old_player1
+mkdir saved_QNetworks_new_player1
+mkdir saved_QNetworks_old_player2
+mkdir saved_QNetworks_new_player2
+mkdir saved_QNetworks_old_player3
+mkdir saved_QNetworks_new_player3
+mkdir saved_PiNetworks_player1
+mkdir saved_PiNetworks_player2
+mkdir saved_PiNetworks_player3

@@ -178,13 +178,11 @@ if __name__ == '__main__':
                     print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
             count += 1
 
-
-        if i % 50 == 1:
-            out_file = runAgent1.Agent.game.get_record().records
-            out = open('record' + str(i) + '.txt', 'w')
-            # print(runAgent1.Agent.game.playrecords.show('=========='), file=out)
-            print(out_file, file=out)
-            out.close()
+        out_file = runAgent1.Agent.game.get_record().records
+        out = open('record' + str(i) + '.txt', 'w')
+        print(out_file, file=out)
+        out.close()
+        if i % 20 == 1:
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             runAgent1.EPSILON = 0.0
