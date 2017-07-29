@@ -2,13 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/NFSP_DouDiZhu.iml" afterPath="$PROJECT_DIR$/.idea/NFSP_DouDiZhu.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AveragePolicyNetwork.py" afterPath="$PROJECT_DIR$/AveragePolicyNetwork.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.index" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.meta" afterPath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.data-00000-of-00001" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.data-00000-of-00001" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.index" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.meta" afterPath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.meta" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/myclass.py" afterPath="$PROJECT_DIR$/game/myclass.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record0.txt" afterPath="$PROJECT_DIR$/record0.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record1.txt" afterPath="$PROJECT_DIR$/record1.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record10.txt" afterPath="$PROJECT_DIR$/record10.txt" />
@@ -24,14 +45,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record2.txt" afterPath="$PROJECT_DIR$/record2.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record20.txt" afterPath="$PROJECT_DIR$/record20.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record21.txt" afterPath="$PROJECT_DIR$/record21.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record22.txt" afterPath="$PROJECT_DIR$/record22.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record23.txt" afterPath="$PROJECT_DIR$/record23.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record24.txt" afterPath="$PROJECT_DIR$/record24.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record25.txt" afterPath="$PROJECT_DIR$/record25.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record26.txt" afterPath="$PROJECT_DIR$/record26.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record27.txt" afterPath="$PROJECT_DIR$/record27.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record28.txt" afterPath="$PROJECT_DIR$/record28.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record29.txt" afterPath="$PROJECT_DIR$/record29.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record3.txt" afterPath="$PROJECT_DIR$/record3.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record4.txt" afterPath="$PROJECT_DIR$/record4.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record5.txt" afterPath="$PROJECT_DIR$/record5.txt" />
@@ -89,8 +102,8 @@
       <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+            <state relative-caret-position="1015">
+              <caret line="218" column="23" lean-forward="true" selection-start-line="218" selection-start-column="23" selection-end-line="218" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -146,8 +159,8 @@
         <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
-        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
       </list>
     </option>
   </component>
@@ -861,8 +874,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state relative-caret-position="1015">
+          <caret line="218" column="23" lean-forward="true" selection-start-line="218" selection-start-column="23" selection-end-line="218" selection-end-column="23" />
           <folding />
         </state>
       </provider>

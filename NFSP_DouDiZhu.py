@@ -213,6 +213,10 @@ if __name__ == '__main__':
                         count_test += 1
                     if done:
                         break
+            out_file = runAgent1.Agent.game.get_record().records
+            out = open('test_record' + str(i) + '.txt', 'w')
+            print(out_file, file=out)
+            out.close()
             print('****************************************** win_rate:', count_test, '% ********************')
             runAgent1.Agent = agent
             runAgent1.EPSILON = 0.01
