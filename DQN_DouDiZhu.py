@@ -20,11 +20,11 @@ class DQN_DouDiZhu:
 
     def weight_variable(self, shape, name):
         initial = tf.truncated_normal(shape, stddev=0.01)
-        return tf.get_variable(name=name, initializer=initial)
+        return tf.get_variable(name=name, initializer=initial, trainable=True)
 
     def bias_variable(self, shape, name):
         initial = tf.constant(0.01, shape=shape)
-        return tf.get_variable(name=name, initializer=initial)
+        return tf.get_variable(name=name, initializer=initial, trainable=True)
 
     def batch_norm(self, X):
         train_phase = self.train_phase

@@ -17,11 +17,11 @@ class Pi:
 
     def weight_variable(self, shape, name):
         initial = tf.truncated_normal(shape, stddev=0.01)
-        return tf.get_variable(name=name, initializer=initial)
+        return tf.get_variable(name=name, initializer=initial, trainable=True)
 
     def bias_variable(self, shape, name):
         initial = tf.constant(0.01, shape=shape)
-        return tf.get_variable(name=name, initializer=initial)
+        return tf.get_variable(name=name, initializer=initial, trainable=True)
 
     def batch_norm(self, X):
         train_phase = self.train_phase
@@ -80,11 +80,11 @@ class Pi:
             self.session.run(tf.initialize_all_variables())
 
     def trainPiNetwork(self):
-        Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
-        for var in Pi_var_list:
-            print('pre ' + var.name)
-            print(self.session.run(var.name))
-        self.train_phase = True
+        # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
+        # for var in Pi_var_list:
+        #     print('pre ' + var.name)
+        #     print(self.session.run(var.name))
+        # self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -115,10 +115,10 @@ class Pi:
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
-        for var in Pi_var_list:
-            print('after ' + var.name)
-            print(self.session.run(var.name))
-        self.train_phase = True
+        # for var in Pi_var_list:
+        #     print('after ' + var.name)
+        #     print(self.session.run(var.name))
+        # self.train_phase = True
 
     def getAction(self, action_space, state):
         checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')

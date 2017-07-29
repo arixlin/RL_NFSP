@@ -1,40 +1,19 @@
 # -*- coding:utf-8 -*-
-import DQN_DouDiZhu as DQN
-from collections import deque
-import AveragePolicyNetwork as SLN
 import agent as ag
 import numpy as np
 import random
 import tensorflow as tf
-
-
-class RunAgent:
-    """class for an agent"""
-    def __init__(self, agent, player):
-        self.Agent = agent
-        self.player = player
-        self.ACTION_NUM = agent.dim_actions
-        self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 100
-        self.SLMemory_num = 100
-        self.RLMemory = deque(maxlen=self.RLMemory_num)
-        self.SLMemory = deque(maxlen=self.SLMemory_num)
-        self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num, self.player)
-        self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory, self.SLMemory_num, self.player)
-        self.EPSILON = 0.06
-        self.ETA = 0.1
-        self.EPISODE_NUM = 5000000
-        self.Q_enable = False
+import RunAgent as RA
 
 
 if __name__ == '__main__':
     agent = ag.Agent(models=["rl", "rl", "rl"])
     with tf.name_scope('player1'):
-        runAgent1 = RunAgent(agent, 'player1')
+        runAgent1 = RA.RunAgent(agent, 'player1')
     with tf.name_scope('player2'):
-        runAgent2 = RunAgent(agent, 'player2')
+        runAgent2 = RA.RunAgent(agent, 'player2')
     with tf.name_scope('player3'):
-        runAgent3 = RunAgent(agent, 'player3')
+        runAgent3 = RA.RunAgent(agent, 'player3')
     for i in range(runAgent1.EPISODE_NUM):
         print('=========== episode:', i, '============')
         if random.random() < runAgent1.ETA:
@@ -199,7 +178,6 @@ if __name__ == '__main__':
                     print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
             count += 1
 
-            # 回合更新方法，返回为LR记录类对象列表
 
         # if i % 50 == 1:
         #     out_file = runAgent1.Agent.game.get_record().records
