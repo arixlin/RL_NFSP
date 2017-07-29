@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="89" column="54" lean-forward="false" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+            <state relative-caret-position="757">
+              <caret line="90" column="50" lean-forward="false" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -106,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="987">
-              <caret line="82" column="53" lean-forward="false" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+            <state relative-caret-position="779">
+              <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -146,8 +146,8 @@
         <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
-        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
       </list>
     </option>
   </component>
@@ -888,20 +888,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
+    <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="89" column="54" lean-forward="false" selection-start-line="89" selection-start-column="54" selection-end-line="89" selection-end-column="54" />
+        <state relative-caret-position="779">
+          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
+    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="987">
-          <caret line="82" column="53" lean-forward="false" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+        <state relative-caret-position="757">
+          <caret line="90" column="50" lean-forward="false" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
