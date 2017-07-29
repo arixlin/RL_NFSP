@@ -44,16 +44,16 @@ if __name__ == '__main__':
             s, actions = agent.get_actions_space(player=1)
             actions_ont_hot = np.zeros(agent.dim_actions)
             for k in range(len(actions)):
-                actions_ont_hot[actions[k]] = 1
+                actions_ont_hot[actions[k]] = 1.0
             if runAgent1.Q_enable:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
                 if label and action_id != 430:
-                    SL_in = np.zeros(runAgent1.ACTION_NUM)
-                    SL_in[action_id] = 1
+                    SL_in = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
+                    SL_in[action_id] = 1.0
                     runAgent1.SLMemory.append([s, SL_in])
                     runAgent1.Pi.SLMemory = runAgent1.SLMemory
             else:
-                action_id = runAgent1.Pi.getAction(actions_ont_hot, s)
+                action_id = runAgent1.Pi.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
             # choose action_id
             try:
                 action_id = actions.index(action_id)
@@ -66,16 +66,16 @@ if __name__ == '__main__':
             s, actions = agent.get_actions_space(player=2)
             actions_ont_hot = np.zeros(agent.dim_actions)
             for k in range(len(actions)):
-                actions_ont_hot[actions[k]] = 1
+                actions_ont_hot[actions[k]] = 1.0
             if runAgent2.Q_enable:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
                 if label and action_id != 430:
-                    SL_in = np.zeros(runAgent2.ACTION_NUM)
-                    SL_in[action_id] = 1
+                    SL_in = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                    SL_in[action_id] = 1.0
                     runAgent2.SLMemory.append([s, SL_in])
                     runAgent2.Pi.SLMemory = runAgent2.SLMemory
             else:
-                action_id = runAgent2.Pi.getAction(actions_ont_hot, s)
+                action_id = runAgent2.Pi.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
             # choose action_id
             if action_id == 0:
                 pass
@@ -90,12 +90,12 @@ if __name__ == '__main__':
             s, actions = agent.get_actions_space(player=3)
             actions_ont_hot = np.zeros(agent.dim_actions)
             for k in range(len(actions)):
-                actions_ont_hot[actions[k]] = 1
+                actions_ont_hot[actions[k]] = 1.0
             if runAgent3.Q_enable:
-                action_id, label = runAgent3.Q.getAction(actions_ont_hot, s)
+                action_id, label = runAgent3.Q.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
                 if label and action_id != 430:
-                    SL_in = np.zeros(runAgent3.ACTION_NUM)
-                    SL_in[action_id] = 1
+                    SL_in = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                    SL_in[action_id] = 1.0
                     runAgent3.SLMemory.append([s, SL_in])
                     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:
@@ -115,29 +115,29 @@ if __name__ == '__main__':
                 d1, d2, d3 = agent.get_training_data()
                 j = -1
                 raw2 = d1[j].a
-                hot2 = np.zeros(runAgent1.ACTION_NUM)
-                hot2[raw2] = 1
+                hot2 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
+                hot2[raw2] = 1.0
                 raw3 = d1[j].a_
-                hot3 = np.zeros(runAgent1.ACTION_NUM)
-                hot3[raw3] = 1
+                hot3 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
+                hot3[raw3] = 1.0
                 if raw2 != 430:
-                    runAgent1.RLMemory.append([d1[j].s, hot2, d1[j].r, d1[j].s_, hot3])
+                    runAgent1.RLMemory.append([d1[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d1[j].r), d1[j].s_.astype(np.float32), hot3.astype(np.float32)])
                 raw2 = d2[j].a
-                hot2 = np.zeros(runAgent2.ACTION_NUM)
-                hot2[raw2] = 1
+                hot2 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                hot2[raw2] = 1.0
                 raw3 = d2[j].a_
-                hot3 = np.zeros(runAgent2.ACTION_NUM)
-                hot3[raw3] = 1
+                hot3 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                hot3[raw3] = 1.0
                 if raw2 != 430:
-                    runAgent2.RLMemory.append([d2[j].s, hot2, d2[j].r, d2[j].s_, hot3])
+                    runAgent2.RLMemory.append([d2[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d2[j].r), d2[j].s_.astype(np.float32), hot3.astype(np.float32)])
                 raw2 = d3[j].a
-                hot2 = np.zeros(runAgent3.ACTION_NUM)
-                hot2[raw2] = 1
+                hot2 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                hot2[raw2] = 1.0
                 raw3 = d3[j].a_
-                hot3 = np.zeros(runAgent3.ACTION_NUM)
-                hot3[raw3] = 1
+                hot3 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                hot3[raw3] = 1.0
                 if raw2 != 430:
-                    runAgent3.RLMemory.append([d3[j].s, hot2, d3[j].r, d3[j].s_, hot3])
+                    runAgent3.RLMemory.append([d3[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d3[j].r), d3[j].s_.astype(np.float32), hot3.astype(np.float32)])
                 runAgent1.Q.REPLAY_MEMORY = runAgent1.RLMemory
                 runAgent2.Q.REPLAY_MEMORY = runAgent2.RLMemory
                 runAgent3.Q.REPLAY_MEMORY = runAgent3.RLMemory

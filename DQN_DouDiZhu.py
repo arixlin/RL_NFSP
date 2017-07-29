@@ -74,7 +74,6 @@ class DQN_DouDiZhu:
         self.QValue = tf.nn.softmax(self.QValue)
         Q_action = tf.reduce_sum(tf.multiply(self.QValue, self.actionInput), reduction_indices=-1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - Q_action))
-        tf.summary.scalar('RL_loss', self.cost)
         self.trainStep = tf.train.GradientDescentOptimizer(1e-4).minimize(self.cost)
 
         # saving and loading networks
@@ -87,8 +86,6 @@ class DQN_DouDiZhu:
         else:
             print("Could not find old network weights")
             self.session.run(tf.initialize_all_variables())
-        self.merged_summary_op = tf.summary.merge_all()
-        self.summary_writer = tf.summary.FileWriter('logs', self.session.graph)
 
     def trainQNetwork(self):
         self.train_phase = True
@@ -140,13 +137,6 @@ class DQN_DouDiZhu:
         # save network every 100000 iteration
         self.saver.save(self.session, 'saved_QNetworks_new_' + self.player + '/model_new.ckpt')
         # print('new model saved')
-        if self.total_step % 100 == 0:
-            summary_str = self.session.run(self.merged_summary_op, feed_dict={
-                self.yInput: y_batch,
-                self.actionInput: action_batch,
-                self.stateInput: state_batch
-            })
-            self.summary_writer.add_summary(summary_str, self.total_step)
         self.timeStep += 1
         self.total_step += 1
 

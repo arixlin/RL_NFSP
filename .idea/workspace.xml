@@ -2,44 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player1/model.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player2/model.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_PiNetworks_player3/model.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player1/model_new.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player2/model_new.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_new_player3/model_new.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player1/model_old.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player2/model_old.ckpt.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/checkpoint" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.data-00000-of-00001" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/saved_QNetworks_old_player3/model_old.ckpt.meta" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AveragePolicyNetwork.py" afterPath="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/myclass.py" afterPath="$PROJECT_DIR$/game/myclass.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record0.txt" afterPath="$PROJECT_DIR$/record0.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record1.txt" afterPath="$PROJECT_DIR$/record1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record11.txt" afterPath="$PROJECT_DIR$/record11.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/record21.txt" afterPath="$PROJECT_DIR$/record21.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,7 +22,8 @@
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1500880487531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501152229617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RL_NFSP$test_main.coverage" NAME="test_main Coverage Results" MODIFIED="1501314171541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bug_test" />
-    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501317437376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$NFSP_DouDiZhu.coverage" NAME="NFSP_DouDiZhu Coverage Results" MODIFIED="1501322428023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RL_NFSP$DQN_DouDiZhu.coverage" NAME="DQN_DouDiZhu Coverage Results" MODIFIED="1501320277154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/NFSP_DouDiZhu$DQN_DouDiZhu.coverage" NAME="DQN_DouDiZhu Coverage Results" MODIFIED="1501146479154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/RL_NFSP$AveragePolicyNetwork.coverage" NAME="AveragePolicyNetwork Coverage Results" MODIFIED="1501241835440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -67,8 +38,8 @@
       <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="661">
-              <caret line="147" column="12" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="147" selection-end-column="12" />
+            <state relative-caret-position="324">
+              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -79,8 +50,8 @@
       <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2632">
-              <caret line="71" column="45" lean-forward="false" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+            <state relative-caret-position="1924">
+              <caret line="74" column="56" lean-forward="false" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
               <folding>
                 <element signature="e#23#41#0" expanded="true" />
               </folding>
@@ -135,8 +106,8 @@
       <file leaf-file-name="myclass.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game/myclass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="97" column="89" lean-forward="false" selection-start-line="97" selection-start-column="89" selection-end-line="97" selection-end-column="89" />
+            <state relative-caret-position="858">
+              <caret line="132" column="84" lean-forward="false" selection-start-line="132" selection-start-column="84" selection-end-line="132" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -145,8 +116,8 @@
       <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2767">
-              <caret line="123" column="28" lean-forward="false" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+            <state relative-caret-position="3068">
+              <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -180,10 +151,10 @@
         <option value="$PROJECT_DIR$/game/runAgent.py" />
         <option value="$PROJECT_DIR$/bug_test/test_main.py" />
         <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
-        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/game/myclass.py" />
-        <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
+        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+        <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
       </list>
     </option>
   </component>
@@ -431,9 +402,9 @@
     <recent_temporary>
       <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Python.NFSP_DouDiZhu" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_main" />
-        <item index="2" class="java.lang.String" itemvalue="Python.AveragePolicyNetwork" />
-        <item index="3" class="java.lang.String" itemvalue="Python.DQN_DouDiZhu" />
+        <item index="1" class="java.lang.String" itemvalue="Python.DQN_DouDiZhu" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_main" />
+        <item index="3" class="java.lang.String" itemvalue="Python.AveragePolicyNetwork" />
       </list>
     </recent_temporary>
   </component>
@@ -523,7 +494,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="111" />
+      <option name="time" value="115" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -891,7 +862,7 @@
         <state relative-caret-position="2522">
           <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -901,23 +872,23 @@
         <state relative-caret-position="130">
           <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game/myclass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="97" column="89" lean-forward="false" selection-start-line="97" selection-start-column="89" selection-end-line="97" selection-end-column="89" />
+        <state relative-caret-position="858">
+          <caret line="132" column="84" lean-forward="false" selection-start-line="132" selection-start-column="84" selection-end-line="132" selection-end-column="84" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="147" column="12" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="147" selection-end-column="12" />
+        <state relative-caret-position="324">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -926,8 +897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2767">
-          <caret line="123" column="28" lean-forward="false" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+        <state relative-caret-position="3068">
+          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -936,8 +907,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2632">
-          <caret line="71" column="45" lean-forward="false" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+        <state relative-caret-position="1924">
+          <caret line="74" column="56" lean-forward="false" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
           <folding>
             <element signature="e#23#41#0" expanded="true" />
           </folding>
