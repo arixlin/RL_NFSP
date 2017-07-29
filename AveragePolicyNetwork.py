@@ -12,7 +12,7 @@ class Pi:
         self.SLMemory = SLMemory
         self.BATCH_SIZE = 64
         self.timeStep = 0
-        self.timeStep_num = 5
+        self.timeStep_num = 10
         self.createPiNetwork()
 
     def weight_variable(self, shape, name):
@@ -54,7 +54,10 @@ class Pi:
             b1 = self.bias_variable([256], scope + 'b1')
 
             W2 = self.weight_variable([256, 512], scope + 'W2')
-            b2 = self.bias_variable([512], scope + 'b2')     b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
+            b2 = self.bias_variable([512], scope + 'b2')
+
+            W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
+            b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
@@ -134,10 +137,7 @@ class Pi:
         self.QValue = self.session.run(self.output, feed_dict={self.stateInput: [state]})[0]
         # print('Qvalue' + self.player)
         # print(self.QValue)
-        Q_test = self.
-
-            W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
-       QValue * action_space
+        Q_test = self.QValue * action_space
         # print('Qtest' + self.player)
         # print(Q_test)
         if max(Q_test) <= 0.0000001:
