@@ -121,8 +121,7 @@ class Pi:
         # print('model saved')
         if self.total_step % 100 == 0:
             summary_str = self.session.run(self.merged_summary_op, feed_dict={
-                self.yInput: y_batch,
-                self.actionInput: action_batch,
+                self.actionOutput: action_batch,
                 self.stateInput: state_batch
             })
             self.summary_writer.add_summary(summary_str, self.total_step)

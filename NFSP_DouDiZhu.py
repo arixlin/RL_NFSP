@@ -47,7 +47,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent1.Q_enable:
                 action_id, label = runAgent1.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430 and action_id != 429:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent1.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent1.SLMemory.append([s, SL_in])
@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent2.Q_enable:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430 and action_id != 429:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent2.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent2.SLMemory.append([s, SL_in])
@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1
             if runAgent3.Q_enable:
                 action_id, label = runAgent3.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430 and action_id != 429:
+                if label and action_id != 430:
                     SL_in = np.zeros(runAgent3.ACTION_NUM)
                     SL_in[action_id] = 1
                     runAgent3.SLMemory.append([s, SL_in])
