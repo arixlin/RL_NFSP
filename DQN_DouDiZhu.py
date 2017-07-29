@@ -107,7 +107,7 @@ class DQN_DouDiZhu:
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
         # print('old model loaded')
-        self.QValue_batch = self.QValue.eval(feed_dict={self.stateInput: nextState_batch})
+        self.QValue_batch = self.session.run(self.QValue, feed_dict={self.stateInput: nextState_batch})
         checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
         if checkpoint and checkpoint.model_checkpoint_path:
             self.saver.restore(self.session, checkpoint.model_checkpoint_path)
