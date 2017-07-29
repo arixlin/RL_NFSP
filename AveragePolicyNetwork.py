@@ -120,7 +120,11 @@ class Pi:
         self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         if self.total_step % 100 == 0:
-            summary_str = self.session.run(self.merged_summary_op)
+            summary_str = self.session.run(self.merged_summary_op, feed_dict={
+                self.yInput: y_batch,
+                self.actionInput: action_batch,
+                self.stateInput: state_batch
+            })
             self.summary_writer.add_summary(summary_str, self.total_step)
         self.timeStep += 1
         self.total_step += 1
