@@ -191,7 +191,6 @@ if __name__ == '__main__':
         if i % 10 == 1:
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
-            runAgent1.EPSILON = 0.0
             count_test = 0
             for kk in range(100):
                 agent_test.reset()
@@ -219,7 +218,6 @@ if __name__ == '__main__':
             out.close()
             print('****************************************** win_rate:', count_test, '% ********************')
             runAgent1.Agent = agent
-            runAgent1.EPSILON = 0.01
 
 
 

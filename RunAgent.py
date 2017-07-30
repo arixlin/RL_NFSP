@@ -16,7 +16,6 @@ class RunAgent:
         self.SLMemory = deque(maxlen=self.SLMemory_num)
         self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num, self.player)
         self.Pi = SLN.Pi(self.ACTION_NUM, self.STATE_NUM, self.SLMemory, self.SLMemory_num, self.player)
-        self.EPSILON = 0.1
         self.ETA = 0.1
         self.EPISODE_NUM = 5000000
         self.Q_enable = False
