@@ -10,7 +10,7 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 64
+        self.BATCH_SIZE = 16
         self.timeStep = 0
         self.timeStep_num = 10
         self.createPiNetwork()
@@ -68,7 +68,7 @@ class Pi:
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.AdamOptimizer(1e-2).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-3).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
@@ -101,10 +101,11 @@ class Pi:
         # print('=============')
         # print(action_batch)
 
-        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
-        if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-            # print('model loaded')
+        if self.timeStep == 0:
+            checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
+            if checkpoint and checkpoint.model_checkpoint_path:
+                self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+                # print('model loaded')
 
         self.session.run(self.trainStep, feed_dict={
             self.actionOutput: action_batch,
@@ -115,7 +116,8 @@ class Pi:
             self.stateInput: state_batch
         })
 
-        self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
+        if self.timeStep == self.timeStep_num - 1:
+            self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
         self.total_step += 1
@@ -125,10 +127,10 @@ class Pi:
         # self.train_phase = True
 
     def getAction(self, action_space, state):
-        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
-        if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-            # print('model loaded')
+        # checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
+        # if checkpoint and checkpoint.model_checkpoint_path:
+        #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+        #     # print('model loaded')
         self.train_phase = False
         # state = np.zeros(33)
         self.QValue = self.session.run(self.out, feed_dict={self.stateInput: [state]})[0]

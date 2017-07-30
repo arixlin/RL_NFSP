@@ -188,7 +188,7 @@ if __name__ == '__main__':
         out = open('record' + str(i) + '.txt', 'w')
         print(out_file, file=out)
         out.close()
-        if i % 20 == 1:
+        if i % 10 == 1:
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             runAgent1.EPSILON = 0.0
