@@ -184,11 +184,12 @@ if __name__ == '__main__':
                     print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
             count += 1
 
-        out_file = runAgent1.Agent.game.get_record().records
-        out = open('record' + str(i) + '.txt', 'w')
-        print(out_file, file=out)
-        out.close()
         if i % 10 == 1:
+            out_file = runAgent1.Agent.game.get_record().records
+            out = open('records/record' + str(i) + '.txt', 'w')
+            print(out_file, file=out)
+            out.close()
+        if i % 20 == 1:
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             count_test = 0
@@ -213,7 +214,7 @@ if __name__ == '__main__':
                     if done:
                         break
             out_file = runAgent1.Agent.game.get_record().records
-            out = open('test_record' + str(i) + '.txt', 'w')
+            out = open('records/test_record' + str(i) + '.txt', 'w')
             print(out_file, file=out)
             out.close()
             print('****************************************** win_rate:', count_test, '% ********************')

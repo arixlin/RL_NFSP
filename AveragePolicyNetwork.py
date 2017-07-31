@@ -101,10 +101,10 @@ class Pi:
         # print('=============')
         # print(action_batch)
 
-        if self.timeStep == 0:
-            checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
-            if checkpoint and checkpoint.model_checkpoint_path:
-                self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+        # if self.timeStep == 0:
+        #     checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
+        #     if checkpoint and checkpoint.model_checkpoint_path:
+        #         self.saver.restore(self.session, checkpoint.model_checkpoint_path)
                 # print('model loaded')
 
         self.session.run(self.trainStep, feed_dict={
@@ -116,7 +116,7 @@ class Pi:
             self.stateInput: state_batch
         })
 
-        if self.timeStep == self.timeStep_num - 1:
+        if self.total_step == 2000:
             self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
