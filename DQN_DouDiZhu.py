@@ -10,7 +10,7 @@ class DQN_DouDiZhu:
         self.player = player
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
-        self.EPSILON = 0.2
+        self.EPSILON = 0.1
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
         self.BATCH_SIZE = 32

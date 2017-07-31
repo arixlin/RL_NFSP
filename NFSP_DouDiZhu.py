@@ -147,6 +147,7 @@ if __name__ == '__main__':
                 runAgent1.Q.REPLAY_MEMORY = runAgent1.RLMemory
                 runAgent2.Q.REPLAY_MEMORY = runAgent2.RLMemory
                 runAgent3.Q.REPLAY_MEMORY = runAgent3.RLMemory
+                llll = False
                 if len(runAgent1.RLMemory) == runAgent1.RLMemory_num and len(runAgent1.SLMemory) == runAgent1.SLMemory_num and len(runAgent2.RLMemory) == runAgent2.RLMemory_num and len(runAgent2.SLMemory) == runAgent2.SLMemory_num and len(runAgent3.RLMemory) == runAgent3.RLMemory_num and len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
                     runAgent1.ETA = 0.1
                     runAgent2.ETA = 0.1
@@ -175,6 +176,7 @@ if __name__ == '__main__':
                         runAgent3.Pi.trainPiNetwork()
                     # print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
                     runAgent3.Pi.timeStep = 0
+                    llll = True
                 else:
                     runAgent1.ETA = 0.5
                     runAgent2.ETA = 0.5
@@ -184,18 +186,19 @@ if __name__ == '__main__':
                     # print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
             count += 1
 
-        if i % 10 == 1:
-            out_file = runAgent1.Agent.game.get_record().records
-            out = open('records/record' + str(i) + '.txt', 'w')
-            print(out_file, file=out)
-            out.close()
-        if i % 50 == 49:
+        if llll:
             print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
             print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
             print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
             print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
             print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
             print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
+        if i % 10 == 1:
+            out_file = runAgent1.Agent.game.get_record().records
+            out = open('records/record' + str(i) + '.txt', 'w')
+            print(out_file, file=out)
+            out.close()
+        if i % 20 == 19:
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             count_test = 0
