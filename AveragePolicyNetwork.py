@@ -68,7 +68,7 @@ class Pi:
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.AdamOptimizer(1e-2).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-3).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
@@ -83,12 +83,11 @@ class Pi:
 
 
     def trainPiNetwork(self):
-        # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
-        # for var in Pi_var_list:
-        #     print('pre ' + var.name)
-        #     print(self.session.run(var.name))
-        # self.train_phase = True
-        # Step 1: obtain random minibatch from replay memory
+        Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
+        for var in Pi_var_list:
+            if 'Pi' in var:
+                print('pre ' + var.name)
+                print(self.session.run(var.name)
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
         # state_batch = np.zeros([5, 33])
@@ -105,7 +104,7 @@ class Pi:
         #     checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
         #     if checkpoint and checkpoint.model_checkpoint_path:
         #         self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-                # print('model loaded')
+        #       # print('model loaded')
 
         self.session.run(self.trainStep, feed_dict={
             self.actionOutput: action_batch,
@@ -117,14 +116,15 @@ class Pi:
         })
 
         if self.total_step % 2000 == 1:
+        # if self.timeStep == self.timeStep_num - 1:
             self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1
         self.total_step += 1
-        # for var in Pi_var_list:
-        #     print('after ' + var.name)
-        #     print(self.session.run(var.name))
-        # self.train_phase = True
+        for var in Pi_var_list:
+            if 'Pi' in var:
+            	print('after ' + var.name)
+            	print(self.session.run(var.name))
 
     def getAction(self, action_space, state):
         # checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
