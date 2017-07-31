@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import AveragePolicyNetwork as P
+import DQN_DouDiZhu as Q
 
 if __name__ == '__main__':
     SLMemory = []
