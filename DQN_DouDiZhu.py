@@ -10,12 +10,12 @@ class DQN_DouDiZhu:
         self.player = player
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
-        self.EPSILON = 0.1
+        self.EPSILON = 0.2
         self.GAMMA = 0.9
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = 16
+        self.BATCH_SIZE = 32
         self.timeStep = 0
-        self.Q_step_num = 10
+        self.Q_step_num = 5
         self.createQNetwork()
         self.total_step = 0
 
@@ -72,7 +72,7 @@ class DQN_DouDiZhu:
         # h_layer2 = self.batch_norm(h_layer2)
         self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.cost = tf.reduce_mean(tf.square(self.yInput - tf.reduce_sum(self.QValue * self.actionInput, axis=1)))
-        self.trainStep = tf.train.AdamOptimizer(1e-5).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-4).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()

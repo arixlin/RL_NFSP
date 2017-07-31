@@ -10,9 +10,9 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 16
+        self.BATCH_SIZE = 32
         self.timeStep = 0
-        self.timeStep_num = 10
+        self.timeStep_num = 5
         self.createPiNetwork()
         self.total_step = 0
 
@@ -68,7 +68,7 @@ class Pi:
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.AdamOptimizer(1e-3).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-2).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
