@@ -51,11 +51,8 @@ class Pi:
 
         # weights
         with tf.name_scope('Pi') as scope:
-            W1 = self.weight_variable([self.STATE_NUM, 256], scope + 'W1')
-            b1 = self.bias_variable([256], scope + 'b1')
-
-            W2 = self.weight_variable([256, 512], scope + 'W2')
-            b2 = self.bias_variable([512], scope + 'b2')
+            W1 = self.weight_variable([self.STATE_NUM, 512], scope + 'W1')
+            b1 = self.bias_variable([512], scope + 'b1')
 
             W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
             b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
@@ -63,9 +60,7 @@ class Pi:
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
         # h_layer1 = self.batch_norm(h_layer1)
-        h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
-        # h_layer2 = self.batch_norm(h_layer2)
-        self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
+        self.output = tf.nn.bias_add(tf.matmul(h_layer1, W3), b3)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
         self.trainStep = tf.train.AdamOptimizer(1e-3).minimize(self.cost)
@@ -83,11 +78,11 @@ class Pi:
 
 
     def trainPiNetwork(self):
-        Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
-        for var in Pi_var_list:
-            if 'Pi' in var:
-                print('pre ' + var.name)
-                print(self.session.run(var.name)
+        # Pi_var_list = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope=self.player)
+        # for var in Pi_var_list:
+        #     if 'Pi' in var.name:
+        #         print('pre ' + var.name)
+        #         print(self.session.run(var.name))
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
         # state_batch = np.zeros([5, 33])
@@ -121,10 +116,10 @@ class Pi:
         # print('model saved')
         self.timeStep += 1
         self.total_step += 1
-        for var in Pi_var_list:
-            if 'Pi' in var:
-            	print('after ' + var.name)
-            	print(self.session.run(var.name))
+        # for var in Pi_var_list:
+        #     if 'Pi' in var.name:
+        #     	print('after ' + var.name)
+        #     	print(self.session.run(var.name))
 
     def getAction(self, action_space, state):
         # checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')

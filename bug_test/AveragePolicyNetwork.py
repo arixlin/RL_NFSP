@@ -62,9 +62,9 @@ class Pi:
 
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
-        # h_layer1 = self.batch_norm(h_layer1)
+        h_layer1 = self.batch_norm(h_layer1)
         h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
-        # h_layer2 = self.batch_norm(h_layer2)
+        h_layer2 = self.batch_norm(h_layer2)
         self.output = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
@@ -87,7 +87,7 @@ class Pi:
         # for var in Pi_var_list:
         #     print('pre ' + var.name)
         #     print(self.session.run(var.name))
-        # self.train_phase = True
+        self.train_phase = True
         # Step 1: obtain random minibatch from replay memory
         minibatch = random.sample(self.SLMemory, self.BATCH_SIZE)
         state_batch = [data[0] for data in minibatch]
@@ -119,6 +119,7 @@ class Pi:
         if self.total_step % 2000 == 1:
         # if self.timeStep == self.timeStep_num - 1:
             self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
+            self.session.close()
         # print('model saved')
         self.timeStep += 1
         self.total_step += 1

@@ -56,11 +56,8 @@ class DQN_DouDiZhu:
 
         # weights
         with tf.name_scope('Q') as scope:
-            W1 = self.weight_variable([self.STATE_NUM, 256], scope + 'W1')
-            b1 = self.bias_variable([256], scope + 'b1')
-
-            W2 = self.weight_variable([256, 512], scope + 'W2')
-            b2 = self.bias_variable([512], scope + 'b2')
+            W1 = self.weight_variable([self.STATE_NUM, 512], scope + 'W1')
+            b1 = self.bias_variable([512], scope + 'b1')
 
             W3 = self.weight_variable([512, self.ACTION_NUM], scope + 'W3')
             b3 = self.bias_variable([self.ACTION_NUM], scope + 'b3')
@@ -68,9 +65,7 @@ class DQN_DouDiZhu:
         # layers
         h_layer1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(self.stateInput, W1), b1))
         # h_layer1 = self.batch_norm(h_layer1)
-        h_layer2 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_layer1, W2), b2))
-        # h_layer2 = self.batch_norm(h_layer2)
-        self.QValue = tf.nn.bias_add(tf.matmul(h_layer2, W3), b3)
+        self.QValue = tf.nn.bias_add(tf.matmul(h_layer1, W3), b3)
         self.cost = tf.reduce_mean(tf.square(self.yInput - tf.reduce_sum(self.QValue * self.actionInput, axis=1)))
         self.trainStep = tf.train.AdamOptimizer(1e-4).minimize(self.cost)
 
@@ -102,7 +97,7 @@ class DQN_DouDiZhu:
             # self.saver.save(self.session, 'saved_QNetworks_old_' + self.player + '/model_old.ckpt')
             # print('old model replaced successfully!')
 
-            # checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_old_' + self.player + '/')
+            # checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + self.player + '/')
             # if checkpoint and checkpoint.model_checkpoint_path:
             #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('old model loaded')
@@ -135,6 +130,7 @@ class DQN_DouDiZhu:
 
         # save network every 100000 iteration
         if self.total_step % 2000 == 1:
+        # if self.timeStep == self.Q_step_num - 1:
             self.saver.save(self.session, 'saved_QNetworks_' + self.player + '/model.ckpt')
             # print('new model saved')
         self.timeStep += 1
