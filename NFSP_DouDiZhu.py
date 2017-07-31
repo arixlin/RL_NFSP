@@ -189,7 +189,7 @@ if __name__ == '__main__':
             out = open('records/record' + str(i) + '.txt', 'w')
             print(out_file, file=out)
             out.close()
-        if i % 20 == 1:
+        if i % 20 == 19:
             print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
             print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
             print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
