@@ -116,7 +116,7 @@ class Pi:
             self.stateInput: state_batch
         })
 
-        if self.total_step == 2000:
+        if self.total_step % 2000 == 1:
             self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
         self.timeStep += 1

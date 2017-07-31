@@ -107,7 +107,7 @@ class DQN_DouDiZhu:
             #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
             # print('old model loaded')
             self.QValue_batch = self.session.run(self.QValue, feed_dict={self.stateInput: nextState_batch})
-            self.QValue_batch = tf.stop_gradient(self.QValue_batch)
+            # self.QValue_batch = tf.stop_gradient(self.QValue_batch)
             # checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_new_' + self.player + '/')
             # if checkpoint and checkpoint.model_checkpoint_path:
             #     self.saver.restore(self.session, checkpoint.model_checkpoint_path)
@@ -134,7 +134,7 @@ class DQN_DouDiZhu:
             })
 
         # save network every 100000 iteration
-        if self.total_step == 2000:
+        if self.total_step % 2000 == 1:
             self.saver.save(self.session, 'saved_QNetworks_' + self.player + '/model.ckpt')
             # print('new model saved')
         self.timeStep += 1
