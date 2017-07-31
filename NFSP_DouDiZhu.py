@@ -18,24 +18,24 @@ if __name__ == '__main__':
         print('=========== episode:', i, '============')
         if random.random() < runAgent1.ETA:
             runAgent1.Q_enable = True
-            print('player1 ' + 'Q network is working')
+            # print('player1 ' + 'Q network is working')
         else:
             runAgent1.Q_enable = False
-            print('player1 ' + 'Pi network is working')
+            # print('player1 ' + 'Pi network is working')
 
         if random.random() < runAgent2.ETA:
             runAgent2.Q_enable = True
-            print('player2 ' + 'Q network is working')
+            # print('player2 ' + 'Q network is working')
         else:
             runAgent2.Q_enable = False
-            print('player2 ' + 'Pi network is working')
+            # print('player2 ' + 'Pi network is working')
 
         if random.random() < runAgent3.ETA:
             runAgent3.Q_enable = True
-            print('player3 ' + 'Q network is working')
+            # print('player3 ' + 'Q network is working')
         else:
             runAgent3.Q_enable = False
-            print('player3 ' + 'Pi network is working')
+            # print('player3 ' + 'Pi network is working')
 
         agent.reset()
         done = False
@@ -153,35 +153,35 @@ if __name__ == '__main__':
                     runAgent3.ETA = 0.1
                     for step in range(runAgent1.Q.Q_step_num):
                         runAgent1.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
+                    # print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
                     runAgent1.Q.timeStep = 0
                     for step in range(runAgent1.Pi.timeStep_num):
                         runAgent1.Pi.trainPiNetwork()
-                    print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
+                    # print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
                     runAgent1.Pi.timeStep = 0
                     for step in range(runAgent2.Q.Q_step_num):
                         runAgent2.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+                    # print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
                     runAgent2.Q.timeStep = 0
                     for step in range(runAgent2.Pi.timeStep_num):
                         runAgent2.Pi.trainPiNetwork()
-                    print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+                    # print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
                     runAgent2.Pi.timeStep = 0
                     for step in range(runAgent3.Q.Q_step_num):
                         runAgent3.Q.trainQNetwork()
-                    print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+                    # print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
                     runAgent3.Q.timeStep = 0
                     for step in range(runAgent3.Pi.timeStep_num):
                         runAgent3.Pi.trainPiNetwork()
-                    print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
+                    # print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
                     runAgent3.Pi.timeStep = 0
                 else:
                     runAgent1.ETA = 0.5
                     runAgent2.ETA = 0.5
                     runAgent3.ETA = 0.5
-                    print('player1 RL memory num:', len(runAgent1.RLMemory), ' SL memory num:', len(runAgent1.SLMemory))
-                    print('player2 RL memory num:', len(runAgent2.RLMemory), ' SL memory num:', len(runAgent2.SLMemory))
-                    print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
+                    # print('player1 RL memory num:', len(runAgent1.RLMemory), ' SL memory num:', len(runAgent1.SLMemory))
+                    # print('player2 RL memory num:', len(runAgent2.RLMemory), ' SL memory num:', len(runAgent2.SLMemory))
+                    # print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
             count += 1
 
         if i % 10 == 1:
@@ -190,6 +190,12 @@ if __name__ == '__main__':
             print(out_file, file=out)
             out.close()
         if i % 20 == 1:
+            print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
+            print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
+            print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+            print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+            print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+            print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
             agent_test = ag.Agent(models=["rl", "random", "random"])
             runAgent1.Agent = agent_test
             count_test = 0
