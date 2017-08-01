@@ -10,7 +10,7 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 64
+        self.BATCH_SIZE = 16
         self.timeStep = 0
         self.timeStep_num = 10
         self.createPiNetwork()
@@ -60,18 +60,18 @@ class Pi:
 
         # weights
         weights = {
-            'W1': tf.Variable(tf.truncated_normal([11, 11, 1, 64], stddev=0.02), trainable=True, name='W1'),
+            'W1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.02), trainable=True, name='W1'),
             'W2': tf.Variable(tf.truncated_normal([5, 5, 64, 192], stddev=0.02), trainable=True, name='W2'),
             'W3': tf.Variable(tf.truncated_normal([3, 3, 192, 256], stddev=0.02), trainable=True, name='W3'),
-            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 256, 4096], stddev=0.02), trainable=True, name='W_fc6'),
-            'W_fc8': tf.Variable(tf.truncated_normal([4096, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
+            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 256, 2048], stddev=0.02), trainable=True, name='W_fc6'),
+            'W_fc8': tf.Variable(tf.truncated_normal([2048, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
         }
 
         biases = {
             'b1': tf.Variable(tf.constant(0.0, shape=[64]), trainable=True, name='b1'),
             'b2': tf.Variable(tf.constant(0.0, shape=[192]), trainable=True, name='b2'),
             'b3': tf.Variable(tf.constant(0.0, shape=[256]), trainable=True, name='b3'),
-            'b_fc6': tf.Variable(tf.constant(0.0, shape=[4096]), trainable=True, name='b_fc6'),
+            'b_fc6': tf.Variable(tf.constant(0.0, shape=[2048]), trainable=True, name='b_fc6'),
             'b_fc8': tf.Variable(tf.constant(0.0, shape=[self.ACTION_NUM]), trainable=True, name='b_fc8')
         }
 
