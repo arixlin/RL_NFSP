@@ -115,13 +115,22 @@ class DQN_DouDiZhu:
         # saving and loading networks
         self.saver = tf.train.Saver()
         self.session = tf.Session()
-        checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + self.player + '/')
-        if checkpoint and checkpoint.model_checkpoint_path:
-            self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-            print("Successfully loaded:", checkpoint.model_checkpoint_path)
+        if self.player == 'player1':
+            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + self.player + '/')
+            if checkpoint and checkpoint.model_checkpoint_path:
+                self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+                print("Successfully loaded:", checkpoint.model_checkpoint_path)
+            else:
+                print("Could not find old network weights")
+                self.session.run(tf.initialize_all_variables())
         else:
-            print("Could not find old network weights")
-            self.session.run(tf.initialize_all_variables())
+            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + 'player1' + '/')
+            if checkpoint and checkpoint.model_checkpoint_path:
+                self.saver.restore(self.session, checkpoint.model_checkpoint_path)
+                print("Successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Q')
+            else:
+                print("Could not find old network weights of player1 Q")
+                self.session.run(tf.initialize_all_variables())
 
     def trainQNetwork(self):
         self.train_phase = True
