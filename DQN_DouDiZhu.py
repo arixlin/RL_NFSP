@@ -110,7 +110,7 @@ class DQN_DouDiZhu:
             self.QValue = tf.add(tf.matmul(drop6, weights['W_fc8']), biases['b_fc8'], name='fc8')
         # h_layer1 = self.batch_norm(h_layer1)
         self.cost = tf.reduce_mean(tf.square(self.yInput - tf.reduce_sum(self.QValue * self.actionInput, axis=1)))
-        self.trainStep = tf.train.AdamOptimizer(1e-4).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-6).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()

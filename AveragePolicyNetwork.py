@@ -110,7 +110,7 @@ class Pi:
         # h_layer1 = self.batch_norm(h_layer1)
         self.out = tf.nn.softmax(self.output)
         self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.actionOutput, logits=self.output))
-        self.trainStep = tf.train.AdamOptimizer(1e-2).minimize(self.cost)
+        self.trainStep = tf.train.AdamOptimizer(1e-4).minimize(self.cost)
 
         # saving and loading networks
         self.saver = tf.train.Saver()
