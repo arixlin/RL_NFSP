@@ -174,7 +174,7 @@ class DQN_DouDiZhu:
             })
 
         # save network every 100000 iteration
-        if self.total_step % 2000 == 1:
+        if self.total_step % 100 == 1:
         # if self.timeStep == self.Q_step_num - 1:
             self.saver.save(self.session, 'saved_QNetworks_' + self.player + '/model.ckpt')
             # print('new model saved')

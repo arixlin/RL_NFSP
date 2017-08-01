@@ -159,7 +159,7 @@ class Pi:
             self.keep_probability: 1.0
         })
 
-        if self.total_step % 2000 == 1:
+        if self.total_step % 100 == 1:
         # if self.timeStep == self.timeStep_num - 1:
             self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
         # print('model saved')
