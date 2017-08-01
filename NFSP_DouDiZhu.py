@@ -14,12 +14,9 @@ def combine(s, a):
 
 if __name__ == '__main__':
     agent = ag.Agent(models=["rl", "rl", "rl"])
-    with tf.name_scope('player1'):
-        runAgent1 = RA.RunAgent(agent, 'player1')
-    with tf.name_scope('player2'):
-        runAgent2 = RA.RunAgent(agent, 'player2')
-    with tf.name_scope('player3'):
-        runAgent3 = RA.RunAgent(agent, 'player3')
+    runAgent1 = RA.RunAgent(agent, 'player1')
+    runAgent2 = RA.RunAgent(agent, 'player2')
+    runAgent3 = RA.RunAgent(agent, 'player3')
     train_count = 0
     win_count = 0
     for i in range(runAgent1.EPISODE_NUM):
