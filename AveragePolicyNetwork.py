@@ -62,22 +62,16 @@ class Pi:
         weights = {
             'W1': tf.Variable(tf.truncated_normal([11, 11, 1, 64], stddev=0.02), trainable=True, name='W1'),
             'W2': tf.Variable(tf.truncated_normal([5, 5, 64, 192], stddev=0.02), trainable=True, name='W2'),
-            'W3': tf.Variable(tf.truncated_normal([3, 3, 192, 384], stddev=0.02), trainable=True, name='W3'),
-            'W4': tf.Variable(tf.truncated_normal([3, 3, 384, 256], stddev=0.02), trainable=True, name='W4'),
-            'W5': tf.Variable(tf.truncated_normal([3, 3, 256, 256], stddev=0.02), trainable=True, name='W5'),
-            'W_fc6': tf.Variable(tf.truncated_normal([9 * 8 * 256, 4096], stddev=0.02), trainable=True, name='W_fc6'),
-            'W_fc7': tf.Variable(tf.truncated_normal([4096, 4096], stddev=0.02), trainable=True, name='W_fc7'),
+            'W3': tf.Variable(tf.truncated_normal([3, 3, 192, 256], stddev=0.02), trainable=True, name='W3'),
+            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 256, 4096], stddev=0.02), trainable=True, name='W_fc6'),
             'W_fc8': tf.Variable(tf.truncated_normal([4096, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
         }
 
         biases = {
             'b1': tf.Variable(tf.constant(0.0, shape=[64]), trainable=True, name='b1'),
             'b2': tf.Variable(tf.constant(0.0, shape=[192]), trainable=True, name='b2'),
-            'b3': tf.Variable(tf.constant(0.0, shape=[384]), trainable=True, name='b3'),
-            'b4': tf.Variable(tf.constant(0.0, shape=[256]), trainable=True, name='b4'),
-            'b5': tf.Variable(tf.constant(0.0, shape=[256]), trainable=True, name='b5'),
+            'b3': tf.Variable(tf.constant(0.0, shape=[256]), trainable=True, name='b3'),
             'b_fc6': tf.Variable(tf.constant(0.0, shape=[4096]), trainable=True, name='b_fc6'),
-            'b_fc7': tf.Variable(tf.constant(0.0, shape=[4096]), trainable=True, name='b_fc7'),
             'b_fc8': tf.Variable(tf.constant(0.0, shape=[self.ACTION_NUM]), trainable=True, name='b_fc8')
         }
 
@@ -99,35 +93,18 @@ class Pi:
             conv3 = conv_layer(pool2, weights['W3'], biases['b3'], 1)
             conv3 = tf.nn.relu(conv3)
 
-        with tf.name_scope('conv4'):
-            conv4 = conv_layer(conv3, weights['W4'], biases['b4'], 1)
-            conv4 = tf.nn.relu(conv4)
-
-        with tf.name_scope('pool4'):
-            pool4 = tf.nn.max_pool(conv4, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool4')
-
-        with tf.name_scope('conv5'):
-            conv5 = conv_layer(pool4, weights['W5'], biases['b5'], 1)
-            conv5 = tf.nn.relu(conv5)
-
         with tf.name_scope('pool5'):
-            pool5 = tf.nn.max_pool(conv5, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
+            pool5 = tf.nn.max_pool(conv3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
 
         with tf.name_scope('fc6'):
-            pool5_flat = tf.reshape(pool5, shape=[-1, 9 * 8 * 256])
+            pool5_flat = tf.reshape(pool5, shape=[-1, 19 * 17 * 256])
             fc6 = tf.nn.relu(tf.matmul(pool5_flat, weights['W_fc6']) + biases['b_fc6'], name='fc6')
 
         with tf.name_scope('drop6'):
             drop6 = tf.nn.dropout(fc6, keep_prob=self.keep_probability)
 
-        with tf.name_scope('fc7'):
-            fc7 = tf.nn.relu(tf.matmul(drop6, weights['W_fc7']) + biases['b_fc7'], name='fc7')
-
-        with tf.name_scope('drop7'):
-            drop7 = tf.nn.dropout(fc7, keep_prob=self.keep_probability)
-
         with tf.name_scope('fc8'):
-            self.output = tf.add(tf.matmul(drop7, weights['W_fc8']), biases['b_fc8'], name='fc8')
+            self.output = tf.add(tf.matmul(drop6, weights['W_fc8']), biases['b_fc8'], name='fc8')
 
         # layers
         # h_layer1 = self.batch_norm(h_layer1)
