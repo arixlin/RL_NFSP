@@ -5,6 +5,7 @@ import random
 class Pi:
     """class for average-policy network"""
     def __init__(self, ACTION_NUM, STATE_NUM, SLMemory, SLMemory_num, player):
+        self.player = player
         self.train_phase = False
         self.player = player
         self.ACTION_NUM = ACTION_NUM
@@ -59,7 +60,7 @@ class Pi:
         self.keep_probability = tf.placeholder(tf.float32, name='keep_probability')
 
         # weights
-        weights = {
+        self.weights = {
             'W1': tf.Variable(tf.truncated_normal([3, 3, 1, 32], stddev=0.02), trainable=True, name='W1'),
             'W2': tf.Variable(tf.truncated_normal([5, 5, 32, 64], stddev=0.02), trainable=True, name='W2'),
             'W3': tf.Variable(tf.truncated_normal([3, 3, 64, 128], stddev=0.02), trainable=True, name='W3'),
@@ -67,7 +68,7 @@ class Pi:
             'W_fc8': tf.Variable(tf.truncated_normal([1024, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
         }
 
-        biases = {
+        self.biases = {
             'b1': tf.Variable(tf.constant(0.0, shape=[32]), trainable=True, name='b1'),
             'b2': tf.Variable(tf.constant(0.0, shape=[64]), trainable=True, name='b2'),
             'b3': tf.Variable(tf.constant(0.0, shape=[128]), trainable=True, name='b3'),
@@ -76,21 +77,21 @@ class Pi:
         }
 
         with tf.name_scope('conv1'):
-            conv1 = conv_layer(self.stateInput, weights['W1'], biases['b1'], 1)
+            conv1 = conv_layer(self.stateInput, self.weights['W1'], self.biases['b1'], 1)
             conv1 = tf.nn.relu(conv1)
 
         with tf.name_scope('pool1'):
             pool1 = tf.nn.max_pool(conv1, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool1')
 
         with tf.name_scope('conv2'):
-            conv2 = conv_layer(pool1, weights['W2'], biases['b2'], 2)
+            conv2 = conv_layer(pool1, self.weights['W2'], self.biases['b2'], 2)
             conv2 = tf.nn.relu(conv2)
 
         with tf.name_scope('pool2'):
             pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool2')
 
         with tf.name_scope('conv3'):
-            conv3 = conv_layer(pool2, weights['W3'], biases['b3'], 2)
+            conv3 = conv_layer(pool2, self.weights['W3'], self.biases['b3'], 2)
             conv3 = tf.nn.relu(conv3)
 
         with tf.name_scope('pool5'):
@@ -98,13 +99,13 @@ class Pi:
 
         with tf.name_scope('fc6'):
             pool5_flat = tf.reshape(pool5, shape=[-1, 4 * 4 * 128])
-            fc6 = tf.nn.relu(tf.matmul(pool5_flat, weights['W_fc6']) + biases['b_fc6'], name='fc6')
+            fc6 = tf.nn.relu(tf.matmul(pool5_flat, self.weights['W_fc6']) + self.biases['b_fc6'], name='fc6')
 
         with tf.name_scope('drop6'):
             drop6 = tf.nn.dropout(fc6, keep_prob=self.keep_probability)
 
         with tf.name_scope('fc8'):
-            self.output = tf.add(tf.matmul(drop6, weights['W_fc8']), biases['b_fc8'], name='fc8')
+            self.output = tf.add(tf.matmul(drop6, self.weights['W_fc8']), self.biases['b_fc8'], name='fc8')
 
         # layers
         # h_layer1 = self.batch_norm(h_layer1)
@@ -114,23 +115,20 @@ class Pi:
 
         # saving and loading networks
         self.saver = tf.train.Saver()
+        self.weights_saver = tf.train.Saver(self.weights)
+        self.biases_saver = tf.train.Saver(self.biases)
         self.session = tf.Session()
-        if self.player == 'player1':
-            checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + self.player + '/')
-            if checkpoint and checkpoint.model_checkpoint_path:
+        checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks/')
+        if checkpoint and checkpoint.model_checkpoint_path:
+            if self.player == 'player_past':
+                self.weights_saver.restore(self.session, 'saved_PiNetworks_past/weights.ckpt')
+                self.biases_saver.restore(self.session, 'saved_PiNetworks_past/biases.ckpt')
+            else:
                 self.saver.restore(self.session, checkpoint.model_checkpoint_path)
                 print("Successfully loaded:", checkpoint.model_checkpoint_path)
-            else:
-                print("Could not find old network weights")
-                self.session.run(tf.initialize_all_variables())
         else:
-            checkpoint = tf.train.get_checkpoint_state('saved_PiNetworks_' + 'player1' + '/')
-            if checkpoint and checkpoint.model_checkpoint_path:
-                self.saver.restore(self.session, checkpoint.model_checkpoint_path)
-                print("Successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Pi')
-            else:
-                print("Could not find old network weights of player1 Pi")
-                self.session.run(tf.initialize_all_variables())
+            print("Could not find old network weights")
+            self.session.run(tf.initialize_all_variables())
 
 
     def trainPiNetwork(self):
@@ -170,7 +168,9 @@ class Pi:
 
         if self.total_step % 100 == 1:
         # if self.timeStep == self.timeStep_num - 1:
-            self.saver.save(self.session, 'saved_PiNetworks_' + self.player + '/model.ckpt')
+            self.saver.save(self.session, 'saved_PiNetworks/model.ckpt')
+            self.weights_saver.save(self.session, 'saved_PiNetworks_past/weights.ckpt')
+            self.biases_saver.save(self.session, 'saved_PiNetworks_past/biases.ckpt')
         # print('model saved')
         self.timeStep += 1
         self.total_step += 1

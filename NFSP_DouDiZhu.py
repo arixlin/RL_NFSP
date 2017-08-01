@@ -4,6 +4,8 @@ import numpy as np
 import random
 import tensorflow as tf
 import RunAgent as RA
+import DQN_DouDiZhu as Q
+import AveragePolicyNetwork as Pi
 
 def combine(s, a):
     dim = s.shape[1]
@@ -14,9 +16,9 @@ def combine(s, a):
 
 if __name__ == '__main__':
     agent = ag.Agent(models=["rl", "rl", "rl"])
-    runAgent1 = RA.RunAgent(agent, 'player1')
-    runAgent2 = RA.RunAgent(agent, 'player2')
-    runAgent3 = RA.RunAgent(agent, 'player3')
+    runAgent1 = RA.RunAgent(agent)
+    q_net = Q(ACTION_NUM=runAgent1.ACTION_NUM, STATE_NUM=runAgent1.STATE_NUM, REPLAY_MEMORY=runAgent1.RLMemory, REPLAY_MEMORY_NUM=runAgent1.RLMemory_num, player='player_past')
+    pi_net = Pi(ACTION_NUM=runAgent1.ACTION_NUM, STATE_NUM=runAgent1.STATE_NUM, SLMemory=runAgent1.SLMemory, SLMemory_num=runAgent1.SLMemory_num, player='player_past')
     train_count = 0
     win_count = 0
     for i in range(runAgent1.EPISODE_NUM):
@@ -76,8 +78,6 @@ if __name__ == '__main__':
             actions_ont_hot = np.zeros(agent.dim_actions)
             for k in range(len(actions)):
                 actions_ont_hot[actions[k]] = 1.0
-            if runAgent2.Q_enable:
-                action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
                 # if label and action_id != 430:
                 #     SL_in = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                 #     SL_in[action_id] = 1.0
@@ -87,8 +87,7 @@ if __name__ == '__main__':
                 #     s = np.expand_dims(s, -1)
                 #     runAgent2.SLMemory.append([s, SL_in])
                 #     runAgent2.Pi.SLMemory = runAgent2.SLMemory
-            else:
-                action_id = runAgent2.Pi.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
+            action_id = pi_net.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
             # choose action_id
 
             action_id = actions.index(action_id)
@@ -100,8 +99,8 @@ if __name__ == '__main__':
             actions_ont_hot = np.zeros(agent.dim_actions)
             for k in range(len(actions)):
                 actions_ont_hot[actions[k]] = 1.0
-            if runAgent3.Q_enable:
-                action_id, label = runAgent3.Q.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
+            # if runAgent3.Q_enable:
+            #     action_id, label = runAgent3.Q.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
                 # if label and action_id != 430:
                 #     SL_in = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                 #     SL_in[action_id] = 1.0
@@ -112,7 +111,7 @@ if __name__ == '__main__':
                 #     runAgent3.SLMemory.append([s, SL_in])
                 #     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:
-                action_id = runAgent3.Pi.getAction(actions_ont_hot, s)
+                action_id = pi_net.getAction(actions_ont_hot, s)
             # choose action_id
             action_id = actions.index(action_id)
             done = agent.step(player=3, action_id=action_id)
@@ -245,24 +244,12 @@ if __name__ == '__main__':
             runAgent1.Agent = agent
         if train_count == 100:
             print('******************* win_rate_with_past_self:', win_count, '% ********************')
-            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + 'player1' + '/')
-            if checkpoint and checkpoint.model_checkpoint_path:
-                runAgent2.Q.saver.restore(runAgent2.Q.session, checkpoint.model_checkpoint_path)
-                print("Player2 successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Q')
-                runAgent3.Q.saver.restore(runAgent3.Q.session, checkpoint.model_checkpoint_path)
-                print("Player3 successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Q')
-            else:
-                print("player2 could not find old network weights of player1 Q")
-                print("player3 could not find old network weights of player1 Q")
-            checkpoint_Pi = tf.train.get_checkpoint_state('saved_PiNetworks_' + 'player1' + '/')
-            if checkpoint_Pi and checkpoint_Pi.model_checkpoint_path:
-                runAgent2.Pi.saver.restore(runAgent2.Pi.session, checkpoint_Pi.model_checkpoint_path)
-                print("Player2 successfully loaded:", checkpoint_Pi.model_checkpoint_path, 'of player1 Pi')
-                runAgent3.Pi.saver.restore(runAgent3.Pi.session, checkpoint_Pi.model_checkpoint_path)
-                print("Player3 successfully loaded:", checkpoint_Pi.model_checkpoint_path, 'of player1 Pi')
-            else:
-                print("player2 could not find old network weights of player1 Pi")
-                print("player3 could not find old network weights of player1 Pi")
+            q_net.weights_saver.restore(q_net.session, 'saved_QNetworks_past/weights.ckpt')
+            q_net.biases_saver.restore(q_net.session, 'saved_QNetworks_past/biases.ckpt')
+            print('Player_past successfully loaded weights of player1 Q')
+            pi_net.weights_saver.restore(pi_net.session, 'saved_PiNetworks_past/weights.ckpt')
+            pi_net.biases_saver.restore(pi_net.session, 'saved_PiNetworks_past/biases.ckpt')
+            print('Player_past successfully loaded biases of player1 Pi')
 
             train_count = 0
             win_count = 0
