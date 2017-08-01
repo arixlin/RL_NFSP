@@ -5,8 +5,9 @@ import AveragePolicyNetwork as SLN
 
 class RunAgent:
     """class for an agent"""
-    def __init__(self, agent):
+    def __init__(self, agent, player):
         self.Agent = agent
+        self.player = player
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
         self.RLMemory_num = 200
