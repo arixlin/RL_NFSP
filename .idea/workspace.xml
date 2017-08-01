@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc4e39c1-eace-49a1-b223-d9adeb8de259" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DQN_DouDiZhu.py" afterPath="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFSP_DouDiZhu.py" afterPath="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="752">
-              <caret line="198" column="25" lean-forward="false" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
+            <state relative-caret-position="827">
+              <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NFSP_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-783">
-              <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+            <state relative-caret-position="1222">
+              <caret line="254" column="25" lean-forward="false" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
               <folding>
                 <element signature="e#45#63#0" expanded="true" />
               </folding>
@@ -102,10 +102,10 @@
         <option value="$PROJECT_DIR$/bug_test/test_main.py" />
         <option value="$PROJECT_DIR$/bug_test/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/agent.py" />
-        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/game/rlutil.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
         <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
+        <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
       </list>
     </option>
   </component>
@@ -791,22 +791,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
+    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-783">
-          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+        <state relative-caret-position="827">
+          <caret line="146" column="32" lean-forward="false" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
           <folding>
-            <element signature="e#45#63#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
+    <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="198" column="25" lean-forward="false" selection-start-line="198" selection-start-column="25" selection-end-line="198" selection-end-column="25" />
+        <state relative-caret-position="1222">
+          <caret line="254" column="25" lean-forward="false" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#45#63#0" expanded="true" />
           </folding>
         </state>
       </provider>

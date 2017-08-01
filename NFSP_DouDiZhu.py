@@ -59,6 +59,7 @@ if __name__ == '__main__':
                     if action_id == 429:
                         print('alert!')
                     s = combine(s, SL_in)
+                    s = np.expand_dims(s, -1)
                     runAgent1.SLMemory.append([s, SL_in])
                     runAgent1.Pi.SLMemory = runAgent1.SLMemory
             else:
@@ -84,6 +85,7 @@ if __name__ == '__main__':
                     if action_id == 429:
                         print('alert!')
                     s = combine(s, SL_in)
+                    s = np.expand_dims(s, -1)
                     runAgent2.SLMemory.append([s, SL_in])
                     runAgent2.Pi.SLMemory = runAgent2.SLMemory
             else:
@@ -111,6 +113,7 @@ if __name__ == '__main__':
                     if action_id == 429:
                         print('alert!')
                     s = combine(s, SL_in)
+                    s = np.expand_dims(s, -1)
                     runAgent3.SLMemory.append([s, SL_in])
                     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:
@@ -133,30 +136,36 @@ if __name__ == '__main__':
                 hot2 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
                 s = combine(d1[j].s, hot2)
+                s = np.expand_dims(s, -1)
                 raw3 = d1[j].a_
                 hot3 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
                 s_ = combine(d1[j].s_, hot3)
+                s_ = np.expand_dims(s_, -1)
                 if raw2 != 430:
                     runAgent1.RLMemory.append([s, hot2.astype(np.float32), np.float32(d1[j].r), s_, hot3.astype(np.float32)])
                 raw2 = d2[j].a
                 hot2 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
                 s = combine(d2[j].s, hot2)
+                s = np.expand_dims(s, -1)
                 raw3 = d2[j].a_
                 hot3 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
                 s_ = combine(d2[j].s_, hot3)
+                s_ = np.expand_dims(s_, -1)
                 if raw2 != 430:
                     runAgent2.RLMemory.append([s, hot2.astype(np.float32), np.float32(d2[j].r), s_, hot3.astype(np.float32)])
                 raw2 = d3[j].a
                 hot2 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
                 s = combine(d3[j].s, hot2)
+                s = np.expand_dims(s, -1)
                 raw3 = d3[j].a_
                 hot3 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
                 s_ = combine(d3[j].s_, hot3)
+                s_ = np.expand_dims(s_, -1)
                 if raw2 != 430:
                     runAgent3.RLMemory.append([s, hot2.astype(np.float32), np.float32(d3[j].r), s_, hot3.astype(np.float32)])
                 runAgent1.Q.REPLAY_MEMORY = runAgent1.RLMemory
