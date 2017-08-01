@@ -80,28 +80,43 @@ class Game(object):
         
     #游戏进行    
     def play(self, rl_record, action):
+        a_plus_plus = [353, 362, 363, 364, 365, 355, 356, 357, 358, 359, 360, 361]
+        a_plus = [402, 401, 399, 396, 392, 387, 381, 400, 397, 393, 388, 382, 375, 367, 398, 394, 389, 376, 368, 395, 390, 384, 377, 369, 391, 385, 378, 370, 386, 379, 371, 380, 372]
+        b = [197, 41, 416, 403, 425, 412, 426, 413, 427, 414, 428, 415, 150, 162, 174, 186, 306, 318, 330, 342, 222, 234, 246, 258, 270, 282, 294, 66, 78, 90, 102, 114, 126, 138, 418, 405, 419, 406, 420, 407, 421, 408, 422, 409, 423, 410, 424, 411]
 
         #记录rl_record
         if self.playround > 1:
             if self.i == 0:
                 if self.rlrecord1.a == 429:
-                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-0.01, s_=get_state(self.playrecords, 1), a_=action[3]))
-                elif self.rlrecord1.a != 430 and self.rlrecord1.a > 40:
+                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-0.005, s_=get_state(self.playrecords, 1), a_=action[3]))
+                elif self.rlrecord1.a != 430 and self.rlrecord1.a in a_plus_plus:
+                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=0.02, s_=get_state(self.playrecords, 1), a_=action[3]))
+                elif self.rlrecord1.a != 430 and self.rlrecord1.a in a_plus:
                     self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=0.01, s_=get_state(self.playrecords, 1), a_=action[3]))
+                elif self.rlrecord1.a != 430 and self.rlrecord1.a > 40:
+                    self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-0.1, s_=get_state(self.playrecords, 1), a_=action[3]))
                 else:
                     self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=0, s_=get_state(self.playrecords, 1), a_=action[3]))
             elif self.i == 1:
                 if self.rlrecord2.a == 429:
-                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-0.01, s_=get_state(self.playrecords, 2), a_=action[3]))
-                elif self.rlrecord2.a != 430 and self.rlrecord2.a > 40:
+                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-0.005, s_=get_state(self.playrecords, 2), a_=action[3]))
+                elif self.rlrecord2.a != 430 and self.rlrecord2.a in a_plus_plus:
+                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=0.02, s_=get_state(self.playrecords, 2), a_=action[3]))
+                elif self.rlrecord2.a != 430 and self.rlrecord2.a in a_plus:
                     self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=0.01, s_=get_state(self.playrecords, 2), a_=action[3]))
+                elif self.rlrecord2.a != 430 and self.rlrecord2.a > 40:
+                    self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-0.1, s_=get_state(self.playrecords, 2), a_=action[3]))
                 else:
                     self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=0, s_=get_state(self.playrecords, 2), a_=action[3]))
             else:
                 if self.rlrecord3.a == 429:
-                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-0.01, s_=get_state(self.playrecords, 3), a_=action[3]))
-                elif self.rlrecord3.a != 430 and self.rlrecord3.a > 40:
+                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-0.005, s_=get_state(self.playrecords, 3), a_=action[3]))
+                elif self.rlrecord3.a != 430 and self.rlrecord3.a in a_plus_plus:
+                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=0.02, s_=get_state(self.playrecords, 3), a_=action[3]))
+                elif self.rlrecord3.a != 430 and self.rlrecord3.a in a_plus:
                     self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=0.01, s_=get_state(self.playrecords, 3), a_=action[3]))
+                elif self.rlrecord3.a != 430 and self.rlrecord3.a > 40:
+                    self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-0.1, s_=get_state(self.playrecords, 3), a_=action[3]))
                 else:
                     self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=0, s_=get_state(self.playrecords, 3), a_=action[3]))
 
@@ -126,17 +141,17 @@ class Game(object):
             self.playrecords.winner = self.i+1
             #记录rl_record
             if self.playrecords.winner == 1:
-                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=3.0, s_=get_state(self.playrecords, 1)))
-                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-3.0, s_=get_state(self.playrecords, 2)))
-                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-3.0, s_=get_state(self.playrecords, 3)))
+                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=1.0, s_=get_state(self.playrecords, 1)))
+                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-1.0, s_=get_state(self.playrecords, 2)))
+                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-1.0, s_=get_state(self.playrecords, 3)))
             elif self.playrecords.winner == 2:
-                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-3.0, s_=get_state(self.playrecords, 1)))
-                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=3.0, s_=get_state(self.playrecords, 2)))
-                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-3.0, s_=get_state(self.playrecords, 3)))
+                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-1.0, s_=get_state(self.playrecords, 1)))
+                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=1.0, s_=get_state(self.playrecords, 2)))
+                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=-1.0, s_=get_state(self.playrecords, 3)))
             else:
-                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-3.0, s_=get_state(self.playrecords, 1)))
-                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-3.0, s_=get_state(self.playrecords, 2)))
-                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=3.0, s_=get_state(self.playrecords, 3)))
+                self.q1.append(RLRecord(s=self.rlrecord1.s, a=self.rlrecord1.a, r=-1.0, s_=get_state(self.playrecords, 1)))
+                self.q2.append(RLRecord(s=self.rlrecord2.s, a=self.rlrecord2.a, r=-1.0, s_=get_state(self.playrecords, 2)))
+                self.q3.append(RLRecord(s=self.rlrecord3.s, a=self.rlrecord3.a, r=1.0, s_=get_state(self.playrecords, 3)))
             return self.end
             
         self.i = self.i + 1
