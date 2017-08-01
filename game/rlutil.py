@@ -9,35 +9,50 @@ import numpy as np
 
 ############################################
 #                   LR相关                 #
-############################################   
+############################################
 def get_state(playrecords, player):
-    state = np.zeros(33).astype("int")
+    state = np.zeros([163, 144]).astype("int")
+    count = 0
+    for record in playrecords.records:
+        cards = record[1]
+        if cards in ["buyao","yaobuqi"]:
+            count += 1
+            continue
+        for card in cards:
+            state[count, card.rank] += 1
+        count += 1
     #手牌
     if player == 1:
         cards_left = playrecords.cards_left1
-        state[30] = len(playrecords.cards_left1)
-        state[31] = len(playrecords.cards_left2)
-        state[32] = len(playrecords.cards_left3)
+        for card in cards_left:
+            state[-4, card.rank] += 1
+        state[-4, 15] = len(playrecords.cards_left1)
+        state[-4, 16] = len(playrecords.cards_left2)
+        state[-4, 17] = len(playrecords.cards_left3)
     elif player == 2:
         cards_left = playrecords.cards_left2
-        state[30] = len(playrecords.cards_left2)
-        state[31] = len(playrecords.cards_left3)
-        state[32] = len(playrecords.cards_left1)
+        for card in cards_left:
+            state[-4, card.rank] += 1
+        state[-4, 15] = len(playrecords.cards_left2)
+        state[-4, 16] = len(playrecords.cards_left3)
+        state[-4, 17] = len(playrecords.cards_left1)
     else:
         cards_left = playrecords.cards_left3
-        state[30] = len(playrecords.cards_left3)
-        state[31] = len(playrecords.cards_left1)
-        state[32] = len(playrecords.cards_left2)
-    for i in cards_left:
-        state[i.rank - 1] += 1
+        for card in cards_left:
+            state[-4, card.rank] += 1
+        state[-4, 15] = len(playrecords.cards_left3)
+        state[-4, 16] = len(playrecords.cards_left1)
+        state[-4, 17] = len(playrecords.cards_left2)
+    # for i in cards_left:
+    #     state[i.rank - 1] += 1
     #底牌
-    for cards in playrecords.records:
-        if cards[1] in ["buyao","yaobuqi"]:
-            continue
-        for card in cards[1]:
-            state[card.rank - 1 + 15] += 1  
-          
-    return state    
+    # for cards in playrecords.records:
+    #     if cards[1] in ["buyao","yaobuqi"]:
+    #         continue
+    #     for card in cards[1]:
+    #         state[card.rank - 1 + 15] += 1
+
+    return state
 
 def get_actions(next_moves, actions_lookuptable, game):
     """

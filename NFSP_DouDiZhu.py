@@ -1,10 +1,16 @@
-# -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-    import agent as ag
 import agent as ag
 import numpy as np
 import random
 import tensorflow as tf
 import RunAgent as RA
 
+def combine(s, a):
+    dim = s.shape[1]
+    s[-3, :] = a[:dim]
+    s[-2, :] = a[dim: 2 * dim]
+    s[-1, :-1] = a[2 * dim: ]
+    return s
 
 if __name__ == '__main__':
     agent = ag.Agent(models=["rl", "rl", "rl"])
@@ -52,6 +58,7 @@ if __name__ == '__main__':
                     SL_in[action_id] = 1.0
                     if action_id == 429:
                         print('alert!')
+                    s = combine(s, SL_in)
                     runAgent1.SLMemory.append([s, SL_in])
                     runAgent1.Pi.SLMemory = runAgent1.SLMemory
             else:
@@ -76,6 +83,7 @@ if __name__ == '__main__':
                     SL_in[action_id] = 1.0
                     if action_id == 429:
                         print('alert!')
+                    s = combine(s, SL_in)
                     runAgent2.SLMemory.append([s, SL_in])
                     runAgent2.Pi.SLMemory = runAgent2.SLMemory
             else:
@@ -102,6 +110,7 @@ if __name__ == '__main__':
                     SL_in[action_id] = 1.0
                     if action_id == 429:
                         print('alert!')
+                    s = combine(s, SL_in)
                     runAgent3.SLMemory.append([s, SL_in])
                     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:
@@ -123,27 +132,33 @@ if __name__ == '__main__':
                 raw2 = d1[j].a
                 hot2 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
+                s = combine(d1[j].s, hot2)
                 raw3 = d1[j].a_
                 hot3 = np.zeros(runAgent1.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
+                s_ = combine(d1[j].s_, hot3)
                 if raw2 != 430:
-                    runAgent1.RLMemory.append([d1[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d1[j].r), d1[j].s_.astype(np.float32), hot3.astype(np.float32)])
+                    runAgent1.RLMemory.append([s, hot2.astype(np.float32), np.float32(d1[j].r), s_, hot3.astype(np.float32)])
                 raw2 = d2[j].a
                 hot2 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
+                s = combine(d2[j].s, hot2)
                 raw3 = d2[j].a_
                 hot3 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
+                s_ = combine(d2[j].s_, hot3)
                 if raw2 != 430:
-                    runAgent2.RLMemory.append([d2[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d2[j].r), d2[j].s_.astype(np.float32), hot3.astype(np.float32)])
+                    runAgent2.RLMemory.append([s, hot2.astype(np.float32), np.float32(d2[j].r), s_, hot3.astype(np.float32)])
                 raw2 = d3[j].a
                 hot2 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                 hot2[raw2] = 1.0
+                s = combine(d3[j].s, hot2)
                 raw3 = d3[j].a_
                 hot3 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
                 hot3[raw3] = 1.0
+                s_ = combine(d3[j].s_, hot3)
                 if raw2 != 430:
-                    runAgent3.RLMemory.append([d3[j].s.astype(np.float32), hot2.astype(np.float32), np.float32(d3[j].r), d3[j].s_.astype(np.float32), hot3.astype(np.float32)])
+                    runAgent3.RLMemory.append([s, hot2.astype(np.float32), np.float32(d3[j].r), s_, hot3.astype(np.float32)])
                 runAgent1.Q.REPLAY_MEMORY = runAgent1.RLMemory
                 runAgent2.Q.REPLAY_MEMORY = runAgent2.RLMemory
                 runAgent3.Q.REPLAY_MEMORY = runAgent3.RLMemory
