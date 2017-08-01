@@ -29,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DQN_DouDiZhu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="84" column="35" lean-forward="false" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            <state relative-caret-position="2226">
+              <caret line="102" column="66" lean-forward="false" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AveragePolicyNetwork.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+            <state relative-caret-position="936">
+              <caret line="99" column="66" lean-forward="false" selection-start-line="99" selection-start-column="66" selection-end-line="99" selection-end-column="66" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -105,8 +105,8 @@
         <option value="$PROJECT_DIR$/agent.py" />
         <option value="$PROJECT_DIR$/NFSP_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/game/rlutil.py" />
-        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
         <option value="$PROJECT_DIR$/AveragePolicyNetwork.py" />
+        <option value="$PROJECT_DIR$/DQN_DouDiZhu.py" />
       </list>
     </option>
   </component>
@@ -782,16 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="84" column="35" lean-forward="false" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NFSP_DouDiZhu.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -804,8 +794,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AveragePolicyNetwork.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="140" column="0" lean-forward="true" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="936">
+          <caret line="99" column="66" lean-forward="false" selection-start-line="99" selection-start-column="66" selection-end-line="99" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DQN_DouDiZhu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2226">
+          <caret line="102" column="66" lean-forward="false" selection-start-line="102" selection-start-column="66" selection-end-line="102" selection-end-column="66" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

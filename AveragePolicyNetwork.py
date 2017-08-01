@@ -60,18 +60,18 @@ class Pi:
 
         # weights
         weights = {
-            'W1': tf.Variable(tf.truncated_normal([3, 3, 1, 64], stddev=0.02), trainable=True, name='W1'),
-            'W2': tf.Variable(tf.truncated_normal([5, 5, 64, 192], stddev=0.02), trainable=True, name='W2'),
-            'W3': tf.Variable(tf.truncated_normal([3, 3, 192, 256], stddev=0.02), trainable=True, name='W3'),
-            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 256, 2048], stddev=0.02), trainable=True, name='W_fc6'),
-            'W_fc8': tf.Variable(tf.truncated_normal([2048, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
+            'W1': tf.Variable(tf.truncated_normal([3, 3, 1, 32], stddev=0.02), trainable=True, name='W1'),
+            'W2': tf.Variable(tf.truncated_normal([5, 5, 32, 64], stddev=0.02), trainable=True, name='W2'),
+            'W3': tf.Variable(tf.truncated_normal([3, 3, 64, 128], stddev=0.02), trainable=True, name='W3'),
+            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 128, 1024], stddev=0.02), trainable=True, name='W_fc6'),
+            'W_fc8': tf.Variable(tf.truncated_normal([1024, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
         }
 
         biases = {
-            'b1': tf.Variable(tf.constant(0.0, shape=[64]), trainable=True, name='b1'),
-            'b2': tf.Variable(tf.constant(0.0, shape=[192]), trainable=True, name='b2'),
-            'b3': tf.Variable(tf.constant(0.0, shape=[256]), trainable=True, name='b3'),
-            'b_fc6': tf.Variable(tf.constant(0.0, shape=[2048]), trainable=True, name='b_fc6'),
+            'b1': tf.Variable(tf.constant(0.0, shape=[32]), trainable=True, name='b1'),
+            'b2': tf.Variable(tf.constant(0.0, shape=[64]), trainable=True, name='b2'),
+            'b3': tf.Variable(tf.constant(0.0, shape=[128]), trainable=True, name='b3'),
+            'b_fc6': tf.Variable(tf.constant(0.0, shape=[1024]), trainable=True, name='b_fc6'),
             'b_fc8': tf.Variable(tf.constant(0.0, shape=[self.ACTION_NUM]), trainable=True, name='b_fc8')
         }
 
@@ -97,7 +97,7 @@ class Pi:
             pool5 = tf.nn.max_pool(conv3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
 
         with tf.name_scope('fc6'):
-            pool5_flat = tf.reshape(pool5, shape=[-1, 19 * 17 * 256])
+            pool5_flat = tf.reshape(pool5, shape=[-1, 19 * 17 * 128])
             fc6 = tf.nn.relu(tf.matmul(pool5_flat, weights['W_fc6']) + biases['b_fc6'], name='fc6')
 
         with tf.name_scope('drop6'):
