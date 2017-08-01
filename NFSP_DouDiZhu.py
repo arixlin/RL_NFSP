@@ -20,7 +20,10 @@ if __name__ == '__main__':
         runAgent2 = RA.RunAgent(agent, 'player2')
     with tf.name_scope('player3'):
         runAgent3 = RA.RunAgent(agent, 'player3')
+    train_count = 0
+    win_count = 0
     for i in range(runAgent1.EPISODE_NUM):
+        train_count += 1
         print('=========== episode:', i, '============')
         if random.random() < runAgent1.ETA:
             runAgent1.Q_enable = True
@@ -29,18 +32,18 @@ if __name__ == '__main__':
             runAgent1.Q_enable = False
             # print('player1 ' + 'Pi network is working')
 
-        if random.random() < runAgent2.ETA:
-            runAgent2.Q_enable = True
-            # print('player2 ' + 'Q network is working')
-        else:
-            runAgent2.Q_enable = False
-            # print('player2 ' + 'Pi network is working')
-
-        if random.random() < runAgent3.ETA:
-            runAgent3.Q_enable = True
-            # print('player3 ' + 'Q network is working')
-        else:
-            runAgent3.Q_enable = False
+        # if random.random() < runAgent2.ETA:
+        #     runAgent2.Q_enable = True
+        #     # print('player2 ' + 'Q network is working')
+        # else:
+        #     runAgent2.Q_enable = False
+        #     # print('player2 ' + 'Pi network is working')
+        #
+        # if random.random() < runAgent3.ETA:
+        #     runAgent3.Q_enable = True
+        #     # print('player3 ' + 'Q network is working')
+        # else:
+        #     runAgent3.Q_enable = False
             # print('player3 ' + 'Pi network is working')
 
         agent.reset()
@@ -65,13 +68,12 @@ if __name__ == '__main__':
             else:
                 action_id = runAgent1.Pi.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
             # choose action_id
-            try:
-                action_id = actions.index(action_id)
-            except ValueError:
-                pass
+            action_id = actions.index(action_id)
             done = agent.step(player=1, action_id=action_id)
             if done:
+                win_count += 1
                 break
+
 
             s, actions = agent.get_actions_space(player=2)
             actions_ont_hot = np.zeros(agent.dim_actions)
@@ -79,24 +81,20 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1.0
             if runAgent2.Q_enable:
                 action_id, label = runAgent2.Q.getAction(actions_ont_hot, s)
-                if label and action_id != 430:
-                    SL_in = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
-                    SL_in[action_id] = 1.0
-                    if action_id == 429:
-                        print('alert!')
-                    s = combine(s, SL_in)
-                    s = np.expand_dims(s, -1)
-                    runAgent2.SLMemory.append([s, SL_in])
-                    runAgent2.Pi.SLMemory = runAgent2.SLMemory
+                # if label and action_id != 430:
+                #     SL_in = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                #     SL_in[action_id] = 1.0
+                #     if action_id == 429:
+                #         print('alert!')
+                #     s = combine(s, SL_in)
+                #     s = np.expand_dims(s, -1)
+                #     runAgent2.SLMemory.append([s, SL_in])
+                #     runAgent2.Pi.SLMemory = runAgent2.SLMemory
             else:
                 action_id = runAgent2.Pi.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
             # choose action_id
-            if action_id == 0:
-                pass
-            try:
-                action_id = actions.index(action_id)
-            except ValueError:
-                pass
+
+            action_id = actions.index(action_id)
             done = agent.step(player=2, action_id=action_id)
             if done:
                 break
@@ -107,23 +105,19 @@ if __name__ == '__main__':
                 actions_ont_hot[actions[k]] = 1.0
             if runAgent3.Q_enable:
                 action_id, label = runAgent3.Q.getAction(actions_ont_hot.astype(np.float32), s.astype(np.float32))
-                if label and action_id != 430:
-                    SL_in = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
-                    SL_in[action_id] = 1.0
-                    if action_id == 429:
-                        print('alert!')
-                    s = combine(s, SL_in)
-                    s = np.expand_dims(s, -1)
-                    runAgent3.SLMemory.append([s, SL_in])
-                    runAgent3.Pi.SLMemory = runAgent3.SLMemory
+                # if label and action_id != 430:
+                #     SL_in = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                #     SL_in[action_id] = 1.0
+                #     if action_id == 429:
+                #         print('alert!')
+                #     s = combine(s, SL_in)
+                #     s = np.expand_dims(s, -1)
+                #     runAgent3.SLMemory.append([s, SL_in])
+                #     runAgent3.Pi.SLMemory = runAgent3.SLMemory
             else:
                 action_id = runAgent3.Pi.getAction(actions_ont_hot, s)
             # choose action_id
-            try:
-                action_id = actions.index(action_id)
-            except ValueError:
-                print(ValueError)
-                pass
+            action_id = actions.index(action_id)
             done = agent.step(player=3, action_id=action_id)
             if done:
                 break
@@ -144,38 +138,38 @@ if __name__ == '__main__':
                 s_ = np.expand_dims(s_, -1)
                 if raw2 != 430:
                     runAgent1.RLMemory.append([s, hot2.astype(np.float32), np.float32(d1[j].r), s_, hot3.astype(np.float32)])
-                raw2 = d2[j].a
-                hot2 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
-                hot2[raw2] = 1.0
-                s = combine(d2[j].s, hot2)
-                s = np.expand_dims(s, -1)
-                raw3 = d2[j].a_
-                hot3 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
-                hot3[raw3] = 1.0
-                s_ = combine(d2[j].s_, hot3)
-                s_ = np.expand_dims(s_, -1)
-                if raw2 != 430:
-                    runAgent2.RLMemory.append([s, hot2.astype(np.float32), np.float32(d2[j].r), s_, hot3.astype(np.float32)])
-                raw2 = d3[j].a
-                hot2 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
-                hot2[raw2] = 1.0
-                s = combine(d3[j].s, hot2)
-                s = np.expand_dims(s, -1)
-                raw3 = d3[j].a_
-                hot3 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
-                hot3[raw3] = 1.0
-                s_ = combine(d3[j].s_, hot3)
-                s_ = np.expand_dims(s_, -1)
-                if raw2 != 430:
-                    runAgent3.RLMemory.append([s, hot2.astype(np.float32), np.float32(d3[j].r), s_, hot3.astype(np.float32)])
+                # raw2 = d2[j].a
+                # hot2 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                # hot2[raw2] = 1.0
+                # s = combine(d2[j].s, hot2)
+                # s = np.expand_dims(s, -1)
+                # raw3 = d2[j].a_
+                # hot3 = np.zeros(runAgent2.ACTION_NUM, dtype=np.float32)
+                # hot3[raw3] = 1.0
+                # s_ = combine(d2[j].s_, hot3)
+                # s_ = np.expand_dims(s_, -1)
+                # if raw2 != 430:
+                #     runAgent2.RLMemory.append([s, hot2.astype(np.float32), np.float32(d2[j].r), s_, hot3.astype(np.float32)])
+                # raw2 = d3[j].a
+                # hot2 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                # hot2[raw2] = 1.0
+                # s = combine(d3[j].s, hot2)
+                # s = np.expand_dims(s, -1)
+                # raw3 = d3[j].a_
+                # hot3 = np.zeros(runAgent3.ACTION_NUM, dtype=np.float32)
+                # hot3[raw3] = 1.0
+                # s_ = combine(d3[j].s_, hot3)
+                # s_ = np.expand_dims(s_, -1)
+                # if raw2 != 430:
+                #     runAgent3.RLMemory.append([s, hot2.astype(np.float32), np.float32(d3[j].r), s_, hot3.astype(np.float32)])
                 runAgent1.Q.REPLAY_MEMORY = runAgent1.RLMemory
-                runAgent2.Q.REPLAY_MEMORY = runAgent2.RLMemory
-                runAgent3.Q.REPLAY_MEMORY = runAgent3.RLMemory
+                # runAgent2.Q.REPLAY_MEMORY = runAgent2.RLMemory
+                # runAgent3.Q.REPLAY_MEMORY = runAgent3.RLMemory
                 llll = False
-                if len(runAgent1.RLMemory) == runAgent1.RLMemory_num and len(runAgent1.SLMemory) == runAgent1.SLMemory_num and len(runAgent2.RLMemory) == runAgent2.RLMemory_num and len(runAgent2.SLMemory) == runAgent2.SLMemory_num and len(runAgent3.RLMemory) == runAgent3.RLMemory_num and len(runAgent3.SLMemory) == runAgent3.SLMemory_num:
+                if len(runAgent1.RLMemory) == runAgent1.RLMemory_num and len(runAgent1.SLMemory) == runAgent1.SLMemory_num:
                     runAgent1.ETA = 0.1
-                    runAgent2.ETA = 0.1
-                    runAgent3.ETA = 0.1
+                    # runAgent2.ETA = 0.1
+                    # runAgent3.ETA = 0.1
                     for step in range(runAgent1.Q.Q_step_num):
                         runAgent1.Q.trainQNetwork()
                     # print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
@@ -184,27 +178,27 @@ if __name__ == '__main__':
                         runAgent1.Pi.trainPiNetwork()
                     # print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
                     runAgent1.Pi.timeStep = 0
-                    for step in range(runAgent2.Q.Q_step_num):
-                        runAgent2.Q.trainQNetwork()
-                    # print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
-                    runAgent2.Q.timeStep = 0
-                    for step in range(runAgent2.Pi.timeStep_num):
-                        runAgent2.Pi.trainPiNetwork()
-                    # print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
-                    runAgent2.Pi.timeStep = 0
-                    for step in range(runAgent3.Q.Q_step_num):
-                        runAgent3.Q.trainQNetwork()
-                    # print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
-                    runAgent3.Q.timeStep = 0
-                    for step in range(runAgent3.Pi.timeStep_num):
-                        runAgent3.Pi.trainPiNetwork()
+                    # for step in range(runAgent2.Q.Q_step_num):
+                    #     runAgent2.Q.trainQNetwork()
+                    # # print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+                    # runAgent2.Q.timeStep = 0
+                    # for step in range(runAgent2.Pi.timeStep_num):
+                    #     runAgent2.Pi.trainPiNetwork()
+                    # # print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+                    # runAgent2.Pi.timeStep = 0
+                    # for step in range(runAgent3.Q.Q_step_num):
+                    #     runAgent3.Q.trainQNetwork()
+                    # # print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+                    # runAgent3.Q.timeStep = 0
+                    # for step in range(runAgent3.Pi.timeStep_num):
+                    #     runAgent3.Pi.trainPiNetwork()
                     # print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
-                    runAgent3.Pi.timeStep = 0
+                    # runAgent3.Pi.timeStep = 0
                     llll = True
                 else:
                     runAgent1.ETA = 0.5
-                    runAgent2.ETA = 0.5
-                    runAgent3.ETA = 0.5
+                    # runAgent2.ETA = 0.5
+                    # runAgent3.ETA = 0.5
                     # print('player1 RL memory num:', len(runAgent1.RLMemory), ' SL memory num:', len(runAgent1.SLMemory))
                     # print('player2 RL memory num:', len(runAgent2.RLMemory), ' SL memory num:', len(runAgent2.SLMemory))
                     # print('player3 RL memory num:', len(runAgent3.RLMemory), ' SL memory num:', len(runAgent3.SLMemory))
@@ -213,10 +207,10 @@ if __name__ == '__main__':
         if llll:
             print('Episode:', i, ' RL loss of player1:', runAgent1.Q.loss)
             print('Episode:', i, ' SL loss of player1:', runAgent1.Pi.loss)
-            print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
-            print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
-            print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
-            print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
+            # print('Episode:', i, ' RL loss of player2:', runAgent2.Q.loss)
+            # print('Episode:', i, ' SL loss of player2:', runAgent2.Pi.loss)
+            # print('Episode:', i, ' RL loss of player3:', runAgent3.Q.loss)
+            # print('Episode:', i, ' SL loss of player3:', runAgent3.Pi.loss)
         if i % 10 == 1:
             out_file = runAgent1.Agent.game.get_record().records
             out = open('records/record' + str(i) + '.txt', 'w')
@@ -247,18 +241,38 @@ if __name__ == '__main__':
                     if done:
                         break
             out_file = runAgent1.Agent.game.get_record().records
-            out = open('records/test_record' + str(i) + '.txt', 'w')
+            out = open('records/random_test_record' + str(i) + '.txt', 'w')
             print(out_file, file=out)
             out.close()
-            print('****************************************** win_rate:', count_test, '% ********************')
+            print('******************* win_rate_with_random:', count_test, '% ********************')
             runAgent1.Agent = agent
+        if train_count == 100:
+            print('******************* win_rate_with_past_self:', win_count, '% ********************')
+            checkpoint = tf.train.get_checkpoint_state('saved_QNetworks_' + 'player1' + '/')
+            if checkpoint and checkpoint.model_checkpoint_path:
+                runAgent2.Q.saver.restore(runAgent2.Q.session, checkpoint.model_checkpoint_path)
+                print("Player2 successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Q')
+                runAgent3.Q.saver.restore(runAgent3.Q.session, checkpoint.model_checkpoint_path)
+                print("Player3 successfully loaded:", checkpoint.model_checkpoint_path, 'of player1 Q')
+            else:
+                print("player2 could not find old network weights of player1 Q")
+                print("player3 could not find old network weights of player1 Q")
+            checkpoint_Pi = tf.train.get_checkpoint_state('saved_PiNetworks_' + 'player1' + '/')
+            if checkpoint_Pi and checkpoint_Pi.model_checkpoint_path:
+                runAgent2.Pi.saver.restore(runAgent2.Pi.session, checkpoint_Pi.model_checkpoint_path)
+                print("Player2 successfully loaded:", checkpoint_Pi.model_checkpoint_path, 'of player1 Pi')
+                runAgent3.Pi.saver.restore(runAgent3.Pi.session, checkpoint_Pi.model_checkpoint_path)
+                print("Player3 successfully loaded:", checkpoint_Pi.model_checkpoint_path, 'of player1 Pi')
+            else:
+                print("player2 could not find old network weights of player1 Pi")
+                print("player3 could not find old network weights of player1 Pi")
+
+            train_count = 0
+            win_count = 0
+
         if i % 100 == 99:
            runAgent1.SLMemory.clear() 
-           runAgent2.SLMemory.clear() 
-           runAgent3.SLMemory.clear() 
-           runAgent1.RLMemory.clear() 
-           runAgent2.RLMemory.clear() 
-           runAgent3.RLMemory.clear() 
+           runAgent1.RLMemory.clear()
 
 
 
