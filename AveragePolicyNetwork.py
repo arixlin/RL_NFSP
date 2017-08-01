@@ -95,8 +95,6 @@ class Pi:
 
         with tf.name_scope('pool5'):
             pool5 = tf.nn.max_pool(conv3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
-            print(pool5.get_shape())
-            exit()
 
         with tf.name_scope('fc6'):
             pool5_flat = tf.reshape(pool5, shape=[-1, 4 * 4 * 128])
