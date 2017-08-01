@@ -10,9 +10,9 @@ class Pi:
         self.ACTION_NUM = ACTION_NUM
         self.STATE_NUM = STATE_NUM
         self.SLMemory = SLMemory
-        self.BATCH_SIZE = 8
+        self.BATCH_SIZE = 32
         self.timeStep = 0
-        self.timeStep_num = 5
+        self.timeStep_num = 10
         self.createPiNetwork()
         self.total_step = 0
 

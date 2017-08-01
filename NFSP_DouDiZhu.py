@@ -269,10 +269,9 @@ if __name__ == '__main__':
 
             train_count = 0
             win_count = 0
+            runAgent1.SLMemory.clear()
+            runAgent1.RLMemory.clear()
 
-        if i % 100 == 99:
-           runAgent1.SLMemory.clear() 
-           runAgent1.RLMemory.clear()
 
 
 
