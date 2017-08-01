@@ -12,7 +12,7 @@ class Pi:
         self.SLMemory = SLMemory
         self.BATCH_SIZE = 32
         self.timeStep = 0
-        self.timeStep_num = 10
+        self.timeStep_num = 3
         self.createPiNetwork()
         self.total_step = 0
 

@@ -15,7 +15,7 @@ class DQN_DouDiZhu:
         self.REPLAY_MEMORY = REPLAY_MEMORY
         self.BATCH_SIZE = 32
         self.timeStep = 0
-        self.Q_step_num = 10
+        self.Q_step_num = 3
         self.createQNetwork()
         self.total_step = 0
 
