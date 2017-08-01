@@ -63,7 +63,7 @@ class Pi:
             'W1': tf.Variable(tf.truncated_normal([3, 3, 1, 32], stddev=0.02), trainable=True, name='W1'),
             'W2': tf.Variable(tf.truncated_normal([5, 5, 32, 64], stddev=0.02), trainable=True, name='W2'),
             'W3': tf.Variable(tf.truncated_normal([3, 3, 64, 128], stddev=0.02), trainable=True, name='W3'),
-            'W_fc6': tf.Variable(tf.truncated_normal([19 * 17 * 128, 1024], stddev=0.02), trainable=True, name='W_fc6'),
+            'W_fc6': tf.Variable(tf.truncated_normal([4 * 4 * 128, 1024], stddev=0.02), trainable=True, name='W_fc6'),
             'W_fc8': tf.Variable(tf.truncated_normal([1024, self.ACTION_NUM], stddev=0.02), trainable=True, name='W_fc8')
         }
 
@@ -83,21 +83,23 @@ class Pi:
             pool1 = tf.nn.max_pool(conv1, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool1')
 
         with tf.name_scope('conv2'):
-            conv2 = conv_layer(pool1, weights['W2'], biases['b2'], 1)
+            conv2 = conv_layer(pool1, weights['W2'], biases['b2'], 2)
             conv2 = tf.nn.relu(conv2)
 
         with tf.name_scope('pool2'):
             pool2 = tf.nn.max_pool(conv2, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool2')
 
         with tf.name_scope('conv3'):
-            conv3 = conv_layer(pool2, weights['W3'], biases['b3'], 1)
+            conv3 = conv_layer(pool2, weights['W3'], biases['b3'], 2)
             conv3 = tf.nn.relu(conv3)
 
         with tf.name_scope('pool5'):
             pool5 = tf.nn.max_pool(conv3, ksize=[1, 3, 3, 1], strides=[1, 2, 2, 1], padding='VALID', name='pool5')
+            print(pool5.get_shape())
+            exit()
 
         with tf.name_scope('fc6'):
-            pool5_flat = tf.reshape(pool5, shape=[-1, 19 * 17 * 128])
+            pool5_flat = tf.reshape(pool5, shape=[-1, 4 * 4 * 128])
             fc6 = tf.nn.relu(tf.matmul(pool5_flat, weights['W_fc6']) + biases['b_fc6'], name='fc6')
 
         with tf.name_scope('drop6'):
