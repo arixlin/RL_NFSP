@@ -196,7 +196,7 @@ class DQN_DouDiZhu:
                 action_index = random.randrange(self.ACTION_NUM)
         else:
             Q_test = QValue * action_space
-            if max(abs(Q_test)) <= 0.0000001:
+            if max(Q_test) <= 0.0000001:
                 action_index = random.randrange(self.ACTION_NUM)
                 while action_space[action_index] != 1:
                     action_index = random.randrange(self.ACTION_NUM)
