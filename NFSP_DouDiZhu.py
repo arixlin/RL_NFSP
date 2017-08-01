@@ -228,6 +228,13 @@ if __name__ == '__main__':
             out.close()
             print('****************************************** win_rate:', count_test, '% ********************')
             runAgent1.Agent = agent
+        if i % 500 == 499:
+           runAgent1.SLMemory.clear() 
+           runAgent2.SLMemory.clear() 
+           runAgent3.SLMemory.clear() 
+           runAgent1.RLMemory.clear() 
+           runAgent2.RLMemory.clear() 
+           runAgent3.RLMemory.clear() 
 
 
 

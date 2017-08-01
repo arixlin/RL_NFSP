@@ -10,8 +10,8 @@ class RunAgent:
         self.player = player
         self.ACTION_NUM = agent.dim_actions
         self.STATE_NUM = agent.dim_states
-        self.RLMemory_num = 100
-        self.SLMemory_num = 100
+        self.RLMemory_num = 1000
+        self.SLMemory_num = 1000
         self.RLMemory = deque(maxlen=self.RLMemory_num)
         self.SLMemory = deque(maxlen=self.SLMemory_num)
         self.Q = DQN.DQN_DouDiZhu(self.ACTION_NUM, self.STATE_NUM, self.RLMemory, self.RLMemory_num, self.player)
