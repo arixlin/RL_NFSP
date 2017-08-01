@@ -13,9 +13,9 @@ class DQN_DouDiZhu:
         self.EPSILON = 0.1
         self.GAMMA = 0.99
         self.REPLAY_MEMORY = REPLAY_MEMORY
-        self.BATCH_SIZE = 16
+        self.BATCH_SIZE = 8
         self.timeStep = 0
-        self.Q_step_num = 10
+        self.Q_step_num = 5
         self.createQNetwork()
         self.total_step = 0
 
