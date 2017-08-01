@@ -123,11 +123,13 @@ class DQN_DouDiZhu:
             if self.player == 'player_past':
                 self.weights_saver.restore(self.session, 'saved_QNetworks_past/weights.ckpt')
                 self.biases_saver.restore(self.session, 'saved_QNetworks_past/biases.ckpt')
+                print('Successfully loaded weights and biases of player1')
             else:
                 self.saver.restore(self.session, checkpoint.model_checkpoint_path)
                 print("Successfully loaded:", checkpoint.model_checkpoint_path)
         else:
             print("Could not find old network weights")
+            print("Could not find old network weights and biases of player1")
             self.session.run(tf.initialize_all_variables())
 
     def trainQNetwork(self):
