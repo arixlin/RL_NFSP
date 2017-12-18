@@ -15,7 +15,7 @@ import jsonpickle
 #                 LR记录类                  #
 ############################################  
 class RLRecord(object):
-    def __init__(self, s=None, a=None, r=None,s_=None,a_=None):
+    def __init__(self, s=None, a=None, r=None, s_=None, a_=None):
         self.s = s
         self.a = a
         self.r = r
@@ -530,7 +530,7 @@ class Player(object):
         #self.show("Player " + str(self.player_id))  
         #要不起&不要
         yaobuqi = False
-        if self.next_move_type in ["yaobuqi","buyao"]:
+        if self.next_move_type in ["yaobuqi", "buyao"]:
             yaobuqi = True
             self.next_move_type = last_move_type
             self.next_move = last_move

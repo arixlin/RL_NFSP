@@ -11,16 +11,18 @@ import numpy as np
 #                   LR相关                 #
 ############################################
 def get_state(playrecords, player):
-    state = np.zeros([163, 144]).astype("int")
+    #player其前N次出牌记录到state
+    state = np.zeros([163, 144]).astype("uint")
     count = 0
     for record in playrecords.records:
         cards = record[1]
-        if cards in ["buyao","yaobuqi"]:
+        if cards in ["buyao", "yaobuqi"]:
             count += 1
             continue
         for card in cards:
             state[count, card.rank] += 1
         count += 1
+
     #手牌
     if player == 1:
         cards_left = playrecords.cards_left1
@@ -51,8 +53,8 @@ def get_state(playrecords, player):
     #         continue
     #     for card in cards[1]:
     #         state[card.rank - 1 + 15] += 1
-
     return state
+
 
 def get_actions(next_moves, actions_lookuptable, game):
     """
