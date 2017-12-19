@@ -66,10 +66,6 @@ def doudizhu_agent():
     Mrl.append(d1_memoryRL)
     Mrl.append(d2_memoryRL)
     Mrl.append(d3_memoryRL)
-    # a = prn_obj(d1[1])
-    # print(a)
-    # print(eval('{' + a.replace('\n', ',') + '}')['s_'])
-    # winner = agent.game.playrecords.winner
 
     # print(agent.dim_states)
     # print(agent.dim_actions)
