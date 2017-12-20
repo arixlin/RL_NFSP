@@ -9,20 +9,15 @@ def object2list(obj):
     memoryRL = []
     for sample in obj:
         memoryRL_sample = [[] for i in range(5)]
-        for name, value in sample.__dict__.items():
-            #a(t+1) 游戏结束, 没有后续行为
-            if value is None:
-                value = [-1]
-            if name == 's':
-                memoryRL_sample[0].append(value)
-            elif name == 'a':
-                memoryRL_sample[1].append(value)
-            elif name == 'r':
-                memoryRL_sample[2].append(value)
-            elif name == 's_':
-                memoryRL_sample[3].append(value)
-            elif name == 'a_':
-                memoryRL_sample[4].append(value)
+        memoryRL_sample[0] = sample.s
+        memoryRL_sample[1] = sample.a
+        memoryRL_sample[2] = sample.r
+        memoryRL_sample[3] = sample.s_
+        # a(t+1) 游戏结束, 没有后续行为
+        if sample.a_ is None:
+            memoryRL_sample[4] = -1
+        else:
+            memoryRL_sample[4] = sample.a_
         memoryRL.append(memoryRL_sample)
     return memoryRL
 
@@ -67,6 +62,7 @@ def doudizhu_agent():
     Mrl.append(d2_memoryRL)
     Mrl.append(d3_memoryRL)
 
+    print(Mrl)
     # print(agent.dim_states)
     # print(agent.dim_actions)
     return Mrl
